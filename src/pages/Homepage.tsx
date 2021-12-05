@@ -1,27 +1,44 @@
 // @flow
-import { Typography } from "@mui/material";
-import * as React from "react";
-import logo from "../logo.svg";
+import { Grid } from "@mui/material";
+import { Box } from "@mui/system";
+import CapitalCard from "../components/cards/Capital";
+import FrindCard from "../components/cards/FrindCard";
+import PortfolioSum from "../components/cards/PortfolioSum";
+import Portfolio from "../components/cards/Portfolio";
+import RecentTransactions from "../components/cards/RecentTransactions";
+import Ranking from "../components/cards/Ranking";
 
 type Props = {};
 export function Homepage(props: Props) {
   return (
     <div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box>
+        <Grid container>
+          <Grid xs={3}>
+            <CapitalCard />
+          </Grid>
+          <Grid xs={5}>
+            <FrindCard />
+          </Grid>
+          <Grid xs={4}>
+            <PortfolioSum />
+          </Grid>
+          <Grid container>
+            <Grid xs={8}>
+              <Portfolio />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid xs={8}>
+            <RecentTransactions />
+          </Grid>
+          <Grid xs={4}>
+            <Ranking />
+          </Grid>
+        </Grid>
+      </Box>
+      <Box></Box>
     </div>
   );
 }

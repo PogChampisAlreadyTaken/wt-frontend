@@ -11,8 +11,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Homepage } from "../pages/Homepage";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
 
@@ -47,15 +46,12 @@ export default function PermanentDrawerLeft() {
         <List>
           {["Overview", "History", "Explore", "Exchange"].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index == 0 ? <InboxIcon /> : ""}</ListItemIcon>
+              <ListItemIcon>{index == 0 ? <MenuIcon /> : ""}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default" }}>
-        <Homepage />
-      </Box>
     </Box>
   );
 }
