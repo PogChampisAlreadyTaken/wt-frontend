@@ -20,7 +20,6 @@ export default function Ranking() {
 
 const useStyles = makeStyles({
   ranking: {
-    padding: "25px",
     height: "100%",
     //background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)',
     background: "#6157f4",

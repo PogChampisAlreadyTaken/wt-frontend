@@ -1,7 +1,6 @@
 // @flow
 import { Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { Box } from "@mui/system";
 import CapitalCard from "../components/cards/Capital";
 import FriendCard from "../components/cards/FriendCard";
