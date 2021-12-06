@@ -12,7 +12,7 @@ import Ranking from "../components/cards/Ranking";
 
 type Props = {};
 export function Homepage(props: Props) {
-  const classes = useStyles();
+  const container = useStyles();
 
   return (
     <Box style={{ height: "calc(100% - 8px)", paddingBottom: "8px" }}>
@@ -57,12 +57,12 @@ export function Homepage(props: Props) {
           container
           direction="row"
           spacing={1}
-          style={{ height: "calc(30%)", margin: "0px" }}
+          style={{ height: "calc(30%)", margin: "0px", paddingBottom: "38px" }}
         >
-          <Grid item xs={8} style={{ height: "100%", margin: "0px" }}>
+          <Grid item xs={8} style={{ height: "100%"}}>
             <RecentTransactions />
           </Grid>
-          <Grid item xs={4} style={{ height: "100%", margin: "0px" }}>
+          <Grid item xs={4} style={{ height: "100%" }}>
             <Ranking />
           </Grid>
         </Grid>
