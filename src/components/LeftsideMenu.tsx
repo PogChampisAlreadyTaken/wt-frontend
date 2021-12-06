@@ -10,9 +10,12 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Homepage } from "../pages/Homepage";
+import MenuIcon from '@mui/icons-material/Menu';
+import HistoryIcon from '@mui/icons-material/History';
+import ExploreIcon from '@mui/icons-material/Explore';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import { ListItemButton } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles"
 
 const drawerWidth = 240;
 
@@ -24,7 +27,7 @@ export default function PermanentDrawerLeft() {
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
-        <Toolbar>
+        <Toolbar style={{ background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)' }}>
           <Typography variant="h6" noWrap component="div">
             Crypto Trading Game
           </Typography>
@@ -47,15 +50,12 @@ export default function PermanentDrawerLeft() {
         <List>
           {["Overview", "History", "Explore", "Exchange"].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index == 0 ? <InboxIcon /> : ""}</ListItemIcon>
+              <ListItemIcon>{index == 0 ? <MenuIcon style={{fill: "#6157f4"}}/> : ""}{index == 1 ? <HistoryIcon style={{fill: "#6157f4"}}/> : ""}{index == 2 ? <ExploreIcon style={{fill: "#6157f4"}}/> : ""}{index == 3 ? <CurrencyExchangeIcon style={{fill: "#6157f4"}}/> : ""}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default" }}>
-        <Homepage />
-      </Box>
     </Box>
   );
 }
