@@ -46,7 +46,7 @@ export default function PermanentDrawerLeft() {
         <List>
           {["Overview", "History", "Explore", "Exchange"].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index == 0 ? <MenuIcon /> : ""}</ListItemIcon>
+              <ListItemIcon>{index == 0 ? <MenuIcon /> : ""}{index == 0 ? <MenuIcon /> : ""}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

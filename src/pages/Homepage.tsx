@@ -12,27 +12,11 @@ import Ranking from "../components/cards/Ranking";
 
 type Props = {};
 export function Homepage(props: Props) {
-  const container = useStyles();
-
+  const classes = useStyles();
   return (
-    <Box style={{ height: "calc(100% - 8px)", paddingBottom: "8px" }}>
-      <Grid
-        container
-        direction="row"
-        spacing={2}
-        style={{
-          height: "calc(100% - 8px)",
-          width: "100%",
-          margin: "0px",
-          paddingRight: "8px",
-          paddingBottom: "8px",
-        }}
-      >
-        <Grid
-          container
-          style={{ height: "calc(70% - 0px)", margin: "0px" }}
-          spacing={1}
-        >
+    <Box className={classes.root}>
+      <Grid container direction="row" spacing={2} className={classes.rootGrid}>
+        <Grid container spacing={1} className={classes.upperGrid}>
           <Grid item container direction="row" xs={12} spacing={1}>
             <Grid item container direction="column" xs={8} spacing={1}>
               <Grid item container direction="row" xs={4} spacing={1}>
@@ -57,12 +41,12 @@ export function Homepage(props: Props) {
           container
           direction="row"
           spacing={1}
-          style={{ height: "calc(30%)", margin: "0px", paddingBottom: "38px" }}
+          className={classes.lowerGrid}
         >
-          <Grid item xs={8} style={{ height: "100%"}}>
+          <Grid item xs={8}>
             <RecentTransactions />
           </Grid>
-          <Grid item xs={4} style={{ height: "100%" }}>
+          <Grid item xs={4}>
             <Ranking />
           </Grid>
         </Grid>
@@ -72,8 +56,24 @@ export function Homepage(props: Props) {
 }
 
 const useStyles = makeStyles({
-  container: {
-    marginLeft: "0px",
-    marginTop: "0px",
+  root: {
+    height: "calc(100% - 8px)",
+    paddingBottom: "8px",
+  },
+  rootGrid: {
+    height: "calc(100% - 8px)",
+    width: "100%",
+    margin: "0px",
+    paddingRight: "8px",
+    paddingBottom: "8px",
+  },
+  upperGrid: {
+    height: "70%",
+    margin: "0px",
+  },
+  lowerGrid: {
+    height: "30%",
+    margin: "0px",
+    paddingBottom: "38px",
   },
 });
