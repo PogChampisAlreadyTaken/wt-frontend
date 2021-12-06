@@ -10,7 +10,7 @@ export default function Ranking() {
     <Card className={classes.ranking}>
       <CardContent>
         <Typography variant="h5" component="h2">
-            Ranking
+          Ranking
         </Typography>
       </CardContent>
       <CardActions></CardActions>
@@ -20,12 +20,11 @@ export default function Ranking() {
 
 const useStyles = makeStyles({
   ranking: {
-    margin: "4px",
     padding: "25px",
-    height: "238px",
+    height: "100%",
     //background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)',
     background: "#6157f4",
-    boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.1)',
+    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
     color: "white",
   },
 });

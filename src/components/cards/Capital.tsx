@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 
 export default function CapitalCard() {
-  const classes = useStyles(); 
+  const classes = useStyles();
   return (
     <Card className={classes.capitalcard}>
       <CardContent>
@@ -20,12 +20,10 @@ export default function CapitalCard() {
 
 const useStyles = makeStyles({
   capitalcard: {
-    margin: "4px",
-    marginTop: "5px",
-    height: "145px",
+    height: "100%",
     //background: 'linear-gradient(45deg, #6157f4 30%, #578df4 90%)',
     background: "#6157f4",
-    boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.1)',
+    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
     color: "white",
   },
 });
