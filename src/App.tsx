@@ -3,20 +3,44 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import PageWrapper from "./components/PageWrapper";
-import { Homepage } from "./pages/Homepage";
-import LeftSideMenu from "./components/LeftsideMenu";
+import { Overview } from "./pages/Overview";
+import { History } from "./pages/History";
+import { Exchange } from "./pages/Exchange";
 
 function App() {
   return (
     <div className="App">
-      <LeftSideMenu />
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/overview"
             element={
               <PageWrapper>
-                <Homepage />
+                <Overview />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <PageWrapper>
+                <History />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/explore"
+            element={
+              <PageWrapper>
+                <History />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/exchange"
+            element={
+              <PageWrapper>
+                <Exchange />
               </PageWrapper>
             }
           />

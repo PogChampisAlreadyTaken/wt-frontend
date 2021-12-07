@@ -1,33 +1,71 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import { ListItem, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
+import MenuIcon from "@mui/icons-material/Menu";
+import HistoryIcon from "@mui/icons-material/History";
+import ExploreIcon from "@mui/icons-material/Explore";
+import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from '@mui/icons-material/Menu';
-import HistoryIcon from '@mui/icons-material/History';
-import ExploreIcon from '@mui/icons-material/Explore';
+import { makeStyles } from "@material-ui/core/styles";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { ListItemButton } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles"
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeft() {
+const useStyles = makeStyles({
+  leftSideMenu: {
+    width: drawerWidth,
+    flexShrink: 0,
+    "& .MuiDrawer-paper": {
+      width: drawerWidth,
+      boxSizing: "border-box",
+    },
+  },
+});
+
+export default function LeftsideMenu() {
+  const navigate = useNavigate();
+  const itemsList = [
+    {
+      text: "Overview",
+      icon: <MenuIcon />,
+      onClick: () => navigate("/overview"),
+    },
+    {
+      text: "History",
+      icon: <HistoryIcon />,
+      onClick: () => navigate("/history"),
+    },
+    {
+      text: "Explore",
+      icon: <ExploreIcon />,
+      onClick: () => navigate("/explore"),
+    },
+    {
+      text: "Exchange",
+      icon: <CurrencyExchangeIcon />,
+      onClick: () => navigate("/exchange"),
+    },
+  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
       >
-        <Toolbar style={{ background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)' }}>
+        <Toolbar
+          style={{
+            background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
+          }}
+        >
           <Typography variant="h6" noWrap component="div">
             Crypto Trading Game
           </Typography>
@@ -48,12 +86,15 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-          {["Overview", "History", "Explore", "Exchange"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index == 0 ? <MenuIcon style={{fill: "#6157f4"}}/> : ""}{index == 1 ? <HistoryIcon style={{fill: "#6157f4"}}/> : ""}{index == 2 ? <ExploreIcon style={{fill: "#6157f4"}}/> : ""}{index == 3 ? <CurrencyExchangeIcon style={{fill: "#6157f4"}}/> : ""}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {itemsList.map((item, index) => {
+            const { text, icon, onClick } = item;
+            return (
+              <ListItem button key={text} onClick={onClick}>
+                {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
     </Box>

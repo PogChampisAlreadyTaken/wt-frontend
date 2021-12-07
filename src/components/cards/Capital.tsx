@@ -3,7 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
-
+ 
 export default function CapitalCard() {
   const classes = useStyles();
   return (
