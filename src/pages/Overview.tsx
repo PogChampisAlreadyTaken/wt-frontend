@@ -10,7 +10,7 @@ import RecentTransactions from "../components/cards/RecentTransactions";
 import Ranking from "../components/cards/Ranking";
 
 type Props = {};
-export function Homepage(props: Props) {
+export function Overview(props: Props) {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
