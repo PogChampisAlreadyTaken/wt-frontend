@@ -5,7 +5,6 @@ import "./App.css";
 import PageWrapper from "./components/PageWrapper";
 import { Overview } from "./pages/Overview";
 import { History } from "./pages/History";
-import LeftSideMenu from "./components/LeftsideMenu";
 import { Exchange } from "./pages/Exchange";
 
 function App() {
