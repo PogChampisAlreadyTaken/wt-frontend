@@ -32,22 +32,22 @@ export default function LeftsideMenu() {
   const itemsList = [
     {
       text: "Overview",
-      icon: <MenuIcon />,
+      icon: <MenuIcon style={{fill: "#6157f4"}} />,
       onClick: () => navigate("/overview"),
     },
     {
       text: "History",
-      icon: <HistoryIcon />,
+      icon: <HistoryIcon style={{fill: "#6157f4"}} />,
       onClick: () => navigate("/history"),
     },
     {
       text: "Explore",
-      icon: <ExploreIcon />,
+      icon: <ExploreIcon style={{fill: "#6157f4"}} />,
       onClick: () => navigate("/explore"),
     },
     {
       text: "Exchange",
-      icon: <CurrencyExchangeIcon />,
+      icon: <CurrencyExchangeIcon style={{fill: "#6157f4"}} />,
       onClick: () => navigate("/exchange"),
     },
   ];
@@ -72,6 +72,9 @@ export default function LeftsideMenu() {
         </Toolbar>
       </AppBar>
       <Drawer
+       style={{
+        background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
+      }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
