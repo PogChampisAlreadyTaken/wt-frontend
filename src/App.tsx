@@ -6,6 +6,7 @@ import PageWrapper from "./components/PageWrapper";
 import { Overview } from "./pages/Overview";
 import { History } from "./pages/History";
 import { Exchange } from "./pages/Exchange";
+import { Explore } from "./pages/Explore";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             path="/explore"
             element={
               <PageWrapper>
-                <History />
+                <Explore />
               </PageWrapper>
             }
           />
