@@ -12,42 +12,32 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import { makeStyles } from "@material-ui/core/styles";
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles({
-  leftSideMenu: {
-    width: drawerWidth,
-    flexShrink: 0,
-    "& .MuiDrawer-paper": {
-      width: drawerWidth,
-      boxSizing: "border-box",
-    },
-  },
-});
-
 export default function LeftsideMenu() {
   const navigate = useNavigate();
+  let isLogedIn = true;
   const itemsList = [
     {
       text: "Overview",
-      icon: <MenuIcon style={{fill: "#6157f4"}} />,
+      icon: <MenuIcon style={{ fill: "#6157f4" }} />,
       onClick: () => navigate("/overview"),
     },
     {
       text: "History",
-      icon: <HistoryIcon style={{fill: "#6157f4"}} />,
+      icon: <HistoryIcon style={{ fill: "#6157f4" }} />,
       onClick: () => navigate("/history"),
     },
     {
       text: "Explore",
-      icon: <ExploreIcon style={{fill: "#6157f4"}} />,
+      icon: <ExploreIcon style={{ fill: "#6157f4" }} />,
       onClick: () => navigate("/explore"),
     },
     {
       text: "Exchange",
-      icon: <CurrencyExchangeIcon style={{fill: "#6157f4"}} />,
+      icon: <CurrencyExchangeIcon style={{ fill: "#6157f4" }} />,
       onClick: () => navigate("/exchange"),
     },
   ];
@@ -72,9 +62,9 @@ export default function LeftsideMenu() {
         </Toolbar>
       </AppBar>
       <Drawer
-       style={{
-        background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
-      }}
+        style={{
+          background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
+        }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -89,15 +79,27 @@ export default function LeftsideMenu() {
         <Toolbar />
         <Divider />
         <List>
-          {itemsList.map((item, index) => {
-            const { text, icon, onClick } = item;
-            return (
-              <ListItem button key={text} onClick={onClick}>
-                {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                <ListItemText primary={text} />
-              </ListItem>
-            );
-          })}
+          {isLogedIn ? (
+            itemsList.map((item, index) => {
+              const { text, icon, onClick } = item;
+              return (
+                isLogedIn && (
+                  <ListItem button key={text} onClick={onClick}>
+                    {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                    <ListItemText primary={text} />
+                  </ListItem>
+                )
+              );
+            })
+          ) : (
+            <ListItem button key="Login" onClick={() => navigate("/")}>
+              <ListItemIcon>
+                {" "}
+                <MenuIcon style={{ fill: "#6157f4" }} />
+              </ListItemIcon>
+              <ListItemText primary="Login" />
+            </ListItem>
+          )}
         </List>
       </Drawer>
     </Box>
