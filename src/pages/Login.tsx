@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import SendIcon from "@mui/icons-material/Send";
-import Lottie from "react-lottie";
 import animationData from "../components/animations/login.json";
 
 export function Login() {
@@ -40,9 +39,7 @@ export function Login() {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          <Lottie options={defaultOptions} height={400} width={400} />
-        </Typography>
+        <Typography component="h1" variant="h5"></Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
