@@ -17,5 +17,5 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CRYPTO_GAME_WT }}"
-          channel: live
+          channelId: live
           projectId: crypto-game-wt
