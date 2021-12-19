@@ -1,4 +1,4 @@
-interface Coin {
+export default interface Coin {
   id: string;
   name: string;
   market_data: MarketData;

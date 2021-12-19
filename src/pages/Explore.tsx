@@ -1,62 +1,67 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-];
+import { getAllCoins } from "../request/coinService";
+import Coin from "../model/coin";
 
 export function Explore() {
   const classes = useStyles();
+  const [coins, setCoins] = React.useState<Coin[]>([]);
+  React.useEffect(() => {
+    getAllCoins().then((coins) => setCoins(coins));
+  }, []);
+
   return (
     <div className={classes.exploreTable}>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Coin</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">24h</TableCell>
-            <TableCell align="right">Last 7 Days</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Coin</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Rank</TableCell>
+              <TableCell align="right">Market Cap</TableCell>
+              <TableCell align="right">Last 7 Days</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {coins.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">
+                  {row.market_data.current_price["usd"]}
+                </TableCell>
+                <TableCell align="right">
+                  {row.market_data.market_cap_rank}
+                </TableCell>
+                <TableCell align="right">
+                  {row.market_data.market_cap["usd"]}
+                </TableCell>
+                <TableCell align="right">
+                  {row.market_data.price_change_percentage_7d}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
 
-
 const useStyles = makeStyles({
   exploreTable: {
-    padding: "5px"
+    padding: "5px",
   },
 });
