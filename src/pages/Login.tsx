@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import SendIcon from "@mui/icons-material/Send";
 import animationData from "../components/animations/login.json";
+import { firebaseGoogleLogin } from "../firebase/firebase";
 
 export function Login() {
   const defaultOptions = {
@@ -69,6 +70,16 @@ export function Login() {
             color="primary"
           >
             Sign In
+          </Button>
+          <Button
+            style={{ backgroundColor: "#6157f4" }}
+            variant="contained"
+            fullWidth
+            endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
+            color="primary"
+            onClick={()=>{firebaseGoogleLogin()}}
+          >
+            Sign In with Google
           </Button>
         </Box>
       </Box>
