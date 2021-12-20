@@ -77,7 +77,9 @@ export function Login() {
             fullWidth
             endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
-            onClick={()=>{firebaseGoogleLogin()}}
+            onClick={() => {
+              firebaseGoogleLogin();
+            }}
           >
             Sign In with Google
           </Button>
