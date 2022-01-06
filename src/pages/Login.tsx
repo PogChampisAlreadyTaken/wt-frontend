@@ -8,17 +8,10 @@ import Container from "@mui/material/Container";
 import SendIcon from "@mui/icons-material/Send";
 import animationData from "../components/animations/login.json";
 import { firebaseGoogleLogin } from "../firebase/firebase";
+import Lottie from "react-lottie-player";
 
 export function Login() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -40,7 +33,13 @@ export function Login() {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5"></Typography>
+        <Lottie
+          loop
+          animationData={animationData}
+          play
+          style={{ width: 450, height: 450 }}
+        />
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
