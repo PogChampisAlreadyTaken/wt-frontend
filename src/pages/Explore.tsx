@@ -8,13 +8,17 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { getAllCoins } from "../request/coinService";
-import Coin from "../model/coin";
+import { checkData, Coin } from "../model";
+import { CoinContext } from "../context/coinContext";
 
 export function Explore() {
   const classes = useStyles();
-  const [coins, setCoins] = React.useState<Coin[]>([]);
+  const [coinContext, setCoinContext] = React.useContext(CoinContext);
+
   React.useEffect(() => {
-    getAllCoins().then((coins) => setCoins(coins));
+    if (checkData(coinContext)) {
+      getAllCoins().then((coins) => setCoinContext(coins));
+    }
   }, []);
 
   return (
@@ -31,28 +35,33 @@ export function Explore() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {coins.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">
-                  {row.market_data.current_price["usd"]}
-                </TableCell>
-                <TableCell align="right">
-                  {row.market_data.market_cap_rank}
-                </TableCell>
-                <TableCell align="right">
-                  {row.market_data.market_cap["usd"]}
-                </TableCell>
-                <TableCell align="right">
-                  {row.market_data.price_change_percentage_7d}
-                </TableCell>
-              </TableRow>
-            ))}
+            {coinContext.coins.map((row) => {
+              {
+                if (!row) return null;
+              }
+              return (
+                <TableRow
+                  key={row.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.market_data.current_price}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.market_data.market_cap_rank}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.market_data.market_cap}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.market_data.price_change_percentage_7d}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
