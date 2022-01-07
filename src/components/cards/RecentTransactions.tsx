@@ -21,9 +21,8 @@ export default function RecentTransactions() {
 const useStyles = makeStyles({
   recentTransactions: {
     height: "100%",
-    //background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)',
-    background: "#6157f4",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "white",
   },
 });
