@@ -67,6 +67,8 @@ export function Login() {
             fullWidth
             endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
+            onClick={()=>{
+              console.log('Hallooooo');}}
           >
             Sign In
           </Button>
@@ -77,6 +79,7 @@ export function Login() {
             endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
             onClick={() => {
+              console.log("Hallooo");
               firebaseGoogleLogin();
             }}
           >
