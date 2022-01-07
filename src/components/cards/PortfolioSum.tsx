@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import { Chart } from "react-google-charts";
 import CardMedia from "@mui/material/CardMedia";
+import FunctionsIcon from '@mui/icons-material/Functions';
 
 export const data = [
   ["Time", "Price"],
@@ -14,9 +15,9 @@ export const data = [
   [3, 17],
   [4, 18],
   [5, 9],
-  [6, 123],
-  [7, 27],
-  [7, 27],
+  [9, 123],
+  [12, 27],
+  [14, 250],
 ];
 
 export const options = {
@@ -42,7 +43,7 @@ export default function PortfolioSum() {
     <Card className={classes.portfolioSum}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Portfolio Sum
+          <FunctionsIcon style={{marginBottom: "-4px"}}/> Portfolio Sum
         </Typography>
         12938.00 USD
       </CardContent>

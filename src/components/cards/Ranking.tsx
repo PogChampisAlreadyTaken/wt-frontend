@@ -3,6 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
+import StarIcon from '@mui/icons-material/Star';
 
 export default function Ranking() {
   const classes = useStyles();
@@ -10,7 +11,7 @@ export default function Ranking() {
     <Card className={classes.ranking}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Ranking
+         <StarIcon style={{marginBottom: "-4px"}}/> Ranking
         </Typography>
       </CardContent>
       <CardActions></CardActions>
