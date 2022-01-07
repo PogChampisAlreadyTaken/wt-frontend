@@ -1,7 +1,9 @@
-import { User } from "firebase/auth";
-import { Coin, CoinList } from "../model";
+import { User as FirebaseUser} from "firebase/auth";
+import { Coin, CoinList, User } from "../model";
 
-export async function postUser(user: User) {
+
+
+export async function postUser(user: FirebaseUser) {
   const url = "http://localhost:8080/users/";
   console.log("hallo");
   fetch(url, {
@@ -17,4 +19,17 @@ export async function postUser(user: User) {
   }).catch((error)=>{
       console.error('Error:', error)
   });
+}
+
+export async function getUsers(): Promise<User[]> {
+  const url = "https://wt-backend-liimootbm.cloud.okteto.net";
+
+  const response = await fetch(url + "/users/", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
+  return response.json();
 }
