@@ -11,10 +11,20 @@ import HistoryIcon from "@mui/icons-material/History";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
-import { makeStyles } from "@material-ui/core/styles";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import animationData from "../components/animations/crypto-logo.json";
+import Lottie from "react-lottie-player";
 
 const drawerWidth = 240;
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 export default function LeftsideMenu() {
   const navigate = useNavigate();
@@ -22,22 +32,22 @@ export default function LeftsideMenu() {
   const itemsList = [
     {
       text: "Overview",
-      icon: <MenuIcon style={{ fill: "#6157f4" }} />,
+      icon: <MenuIcon style={{ fill: "#a8ffb0" }} />,
       onClick: () => navigate("/overview"),
     },
     {
       text: "History",
-      icon: <HistoryIcon style={{ fill: "#6157f4" }} />,
+      icon: <HistoryIcon style={{ fill: "#a8ffb0" }} />,
       onClick: () => navigate("/history"),
     },
     {
       text: "Explore",
-      icon: <ExploreIcon style={{ fill: "#6157f4" }} />,
+      icon: <ExploreIcon style={{ fill: "#a8ffb0" }} />,
       onClick: () => navigate("/explore"),
     },
     {
       text: "Exchange",
-      icon: <CurrencyExchangeIcon style={{ fill: "#6157f4" }} />,
+      icon: <CurrencyExchangeIcon style={{ fill: "#a8ffb0" }} />,
       onClick: () => navigate("/exchange"),
     },
   ];
@@ -47,15 +57,25 @@ export default function LeftsideMenu() {
       <AppBar
         position="fixed"
         sx={{
-          width: `calc(100% - ${drawerWidth}px)`,
+          zIndex: 1300,
           ml: `${drawerWidth}px`,
+          background: "#00281b",
         }}
       >
         <Toolbar
           style={{
-            background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
+            background: "#00281b",
           }}
         >
+          <div style={{width: drawerWidth-48, marginRight: 24}}>
+            <Lottie
+              loop
+              animationData={animationData}
+              play
+              style={{ width: 45, height: 45, margin: "auto" }}
+            />
+          </div>
+
           <Typography variant="h6" noWrap component="div">
             Crypto Trading Game
           </Typography>
@@ -63,7 +83,7 @@ export default function LeftsideMenu() {
       </AppBar>
       <Drawer
         style={{
-          background: "linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)",
+          background: "#00281b",
         }}
         sx={{
           width: drawerWidth,
@@ -71,6 +91,8 @@ export default function LeftsideMenu() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            background: "#00281b",
+            color: "#ffffff",
           },
         }}
         variant="permanent"
