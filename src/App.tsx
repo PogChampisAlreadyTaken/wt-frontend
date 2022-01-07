@@ -3,12 +3,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import PageWrapper from "./components/PageWrapper";
 import { Overview, Login, History, Explore, Exchange } from "./pages";
-import { Coin } from "./model";
+import { Coin, CoinList } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
 
 function App() {
-  const [coin, setCoin] = React.useState<Coin[]>([]);
+  const [coin, setCoin] = React.useState<CoinList>({ coins: [], timestamp: 0 });
+
+  React.useEffect(() => {
+    if (coin.coins.length === 0) {
+      getAllCoins().then((coins) => setCoin(coins));
+    }
+  }, []);
 
   return (
     <div className="App">

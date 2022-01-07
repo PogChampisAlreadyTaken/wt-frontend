@@ -21,7 +21,6 @@ export function Explore() {
     }
   }, []);
 
-  console.log(coinContext);
   return (
     <div className={classes.exploreTable}>
       <TableContainer component={Paper}>
@@ -36,7 +35,7 @@ export function Explore() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {coinContext.map((row) => {
+            {coinContext.coins.map((row) => {
               {
                 if (!row) return null;
               }
@@ -49,13 +48,13 @@ export function Explore() {
                     {row.name}
                   </TableCell>
                   <TableCell align="right">
-                    {row.market_data.current_price["usd"]}
+                    {row.market_data.current_price}
                   </TableCell>
                   <TableCell align="right">
                     {row.market_data.market_cap_rank}
                   </TableCell>
                   <TableCell align="right">
-                    {row.market_data.market_cap["usd"]}
+                    {row.market_data.market_cap}
                   </TableCell>
                   <TableCell align="right">
                     {row.market_data.price_change_percentage_7d}

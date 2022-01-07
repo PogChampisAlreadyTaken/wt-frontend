@@ -1,6 +1,6 @@
-import { Coin } from "../model";
+import { Coin, CoinList } from "../model";
 
-export async function getAllCoins(): Promise<Coin[]> {
+export async function getAllCoins(): Promise<CoinList> {
   const url = "https://wt-backend-liimootbm.cloud.okteto.net/coins/list";
   const response = await fetch(url, {
     method: "GET",

@@ -2,18 +2,26 @@ export interface Coin {
   id: string;
   name: string;
   market_data: MarketData;
-  timestamp?: Date;
 }
 
-export interface MarketData {
-  current_price: { [key: string]: number };
-  market_cap: { [key: string]: number };
+interface MarketData {
+  current_price: number;
+  market_cap: number;
   market_cap_rank: number;
   price_change_percentage_7d: number;
 }
 
-export function checkData(coins: Coin[]) {
+export interface CoinList {
+  coins: Coin[];
+  timestamp: number;
+}
+
+export function checkData(coinList: CoinList) {
+  const { coins, timestamp } = coinList;
   if (coins.length === 0) {
+    return true;
+  }
+  if (new Date(timestamp).getDate() - Date.now() > 1000 * 60 * 15) {
     return true;
   }
   const data = coins.map((coin) => {
