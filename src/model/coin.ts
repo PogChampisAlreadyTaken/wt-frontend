@@ -1,6 +1,7 @@
 export interface Coin {
   id: string;
   name: string;
+  image: string;
   market_data: MarketData;
 }
 

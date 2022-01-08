@@ -48,7 +48,7 @@ function App() {
       recentTransactions: [],
     };
     const transaction = {
-      name: "Trans1",
+      name: "Bitcoin",
       amount: 255,
       price: 432323,
       date: Date.now(),

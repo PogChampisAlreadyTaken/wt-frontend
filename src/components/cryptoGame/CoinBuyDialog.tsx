@@ -60,9 +60,20 @@ export default function CoinBuyDialog(props: Props) {
   }
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Buy {coin.name}</DialogTitle>
+      <DialogTitle
+        style={{
+          background: "#005249",
+          color: "#fff",
+          fontWeight: "bold",
+        }}
+      >
+        Buy {coin.name}
+      </DialogTitle>
       <DialogContent style={{ padding: 50 }}>
         <Slider
+          style={{
+            color: "#005249",
+          }}
           value={typeof USD === "number" ? USD : 0}
           min={0}
           onChange={(event: any) => {

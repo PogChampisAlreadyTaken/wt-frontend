@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import { UserContext } from "../../context/userContext";
+import { CoinContext } from "../../context/coinContext";
 import {
   Table,
   TableBody,
@@ -19,6 +20,7 @@ export default function RecentTransactions() {
   const classes = useStyles();
 
   const [userContext, setUserContext] = React.useContext(UserContext);
+  const [coinContext, setCoinContext] = React.useContext(CoinContext);
 
   return (
     <Card className={classes.recentTransactions}>
@@ -27,28 +29,94 @@ export default function RecentTransactions() {
           <SummarizeIcon style={{ marginBottom: "-4px" }} /> Recent Transactions
         </Typography>
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <Table sx={{ minWidth: 650, marginTop: "10px" }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Coin</TableCell>
-                <TableCell>recent Value</TableCell>
-                <TableCell>Paid</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Coin
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                  }}
+                >
+                  recent Value
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Paid
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Date
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {userContext?.gameStats?.recentTransactions.map(
-                (transaction, index) => (
-                  <TableRow
-                    key={String(index)}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell>{transaction.name}</TableCell>
-                    <TableCell>{transaction.price}</TableCell>
-                    <TableCell>{transaction.amount}</TableCell>
-                    <TableCell>{getDayAndTime(transaction.date)}</TableCell>
-                  </TableRow>
-                )
+                (transaction, index) => {
+                  const coin = coinContext.coins.find(
+                    (coin) => coin.name == transaction.name
+                  );
+                  return (
+                    <TableRow
+                      key={String(index)}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                        }}
+                      >
+                        <img style={{marginRight: "5px", marginBottom: "-7px"}} src={coin?.image} alt="Logo" />
+                        <span style={{marginTop: "3px"}}> {transaction.name}</span>
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                        }}
+                      >
+                        {transaction.price}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                        }}
+                      >
+                        {transaction.amount}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                        }}
+                      >
+                        {getDayAndTime(transaction.date)}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
               )}
             </TableBody>
           </Table>
