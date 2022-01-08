@@ -139,6 +139,7 @@ export default function FriendCard() {
                     userContext.friends = userContext?.friends?.filter(
                       (element) => element.id !== user.id
                     );
+                    handleClose();
                   }}
                 >
                   <DeleteIcon></DeleteIcon>{" "}
