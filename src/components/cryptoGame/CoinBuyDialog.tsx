@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import { Coin, emptyUser } from "../../model";
 import { postTransaction } from "../../request/gameService";
+import { makeStyles } from "@material-ui/core/styles";
 
 interface Props {
   onClose: (open: boolean) => void;
@@ -24,6 +25,7 @@ export default function CoinBuyDialog(props: Props) {
   const [USD, setUSD] = React.useState<number>(0.0);
   const [currentCoin, setCurrentCoin] = React.useState(0.0);
   const [user, setUser] = React.useState(emptyUser());
+  const classes = useStyles();
   user.gameStats = {
     portfolio: {
       ["USD"]: {
@@ -93,6 +95,7 @@ export default function CoinBuyDialog(props: Props) {
             USD
           </Typography>
           <TextField
+            className={classes.overrides}
             id="outlined-USD"
             label="USD"
             fullWidth
@@ -126,6 +129,7 @@ export default function CoinBuyDialog(props: Props) {
             {coin.name}
           </Typography>
           <TextField
+            className={classes.overrides}
             id="outlined-Coin"
             label="Coin"
             fullWidth
@@ -144,14 +148,35 @@ export default function CoinBuyDialog(props: Props) {
         <Button
           onClick={handleClose}
           variant="contained"
-          style={{ padding: 10 }}
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
         >
           Cancel
         </Button>
-        <Button onClick={handleBuy} variant="contained" style={{ padding: 10 }}>
+        <Button
+          onClick={handleBuy}
+          variant="contained"
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
+        >
           Buy
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
+
+const useStyles = makeStyles({
+  overrides: {
+    "& label.Mui-focused": { color: "green" },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": { borderColor: "green" },
+    },
+  },
+});
