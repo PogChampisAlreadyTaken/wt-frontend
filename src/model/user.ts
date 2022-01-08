@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface GameStats {
-  portfolio: { [key: string]: Portfolio };
+  portfolio: Record<string, Portfolio>;
   dailyProfit: number;
   totalProfit: number;
   roundProfit: number;
@@ -21,7 +21,7 @@ export interface Transaction {
   date: number;
 }
 
-interface Portfolio {
+export interface Portfolio {
   name: String;
   amount: number;
 }

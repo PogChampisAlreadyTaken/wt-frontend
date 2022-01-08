@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 import CapitalCard from "../components/cards/Capital";
 import FriendCard from "../components/cards/FriendCard";
 import PortfolioSum from "../components/cards/PortfolioSum";
-import Portfolio from "../components/cards/Portfolio";
+import PortfolioCard from "../components/cards/Portfolio";
 import RecentTransactions from "../components/cards/RecentTransactions";
 import Ranking from "../components/cards/Ranking";
 
@@ -27,7 +27,7 @@ export function Overview(props: Props) {
                 </Grid>
               </Grid>
               <Grid item xs={8}>
-                <Portfolio />
+                <PortfolioCard />
               </Grid>
             </Grid>
             <Grid item xs={4}>

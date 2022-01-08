@@ -29,13 +29,45 @@ function App() {
       getAllCoins().then((coins) => setCoin(coins));
     }
     getUsers().then(setAllUsers);
+    const user: User = {
+      _id: "1",
+      name: "Hanswurst",
+      email: "hans@flamme",
+      friends: [{ _id: "2", name: "hans", email: "hansmail@blah", friends: [] }],
+    };
+    user.gameStats = {
+      portfolio: {
+        ["USD"]: {
+          amount: 500000,
+          name: "USD",
+        },
+        ["Bitcoin"]: {
+          amount: 3,
+          name: "Bitcoin",
+        },
+        ["Ethereum"]: {
+          amount: 7,
+          name: "Ethereum",
+        },
+      },
+      dailyProfit: 1,
+      totalProfit: 2,
+      roundProfit: 3,
+      recentTransactions: [],
+    };
+    const transaction = {
+      name: "Bitcoin",
+      amount: 255,
+      price: 432323,
+      date: Date.now(),
+    };
+    user.gameStats?.recentTransactions.push(transaction);
     setUser(user);
   }, []);
 
   return (
     <div className="App">
       <CoinContext.Provider value={[coin, setCoin]}>
-
         <UserContext.Provider value={[user, setUser]}>
           <AllUserContext.Provider value={[allUsers, setAllUsers]}>
             <BrowserRouter>
@@ -49,21 +81,21 @@ function App() {
                   }
                 />
                 <Route
-              path="/ranking"
-              element={
-                <PageWrapper>
-                  <GameRanking />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/game"
-              element={
-                <PageWrapper>
-                  <CryptoGame />
-                </PageWrapper>
-              }
-            />
+                  path="/ranking"
+                  element={
+                    <PageWrapper>
+                      <GameRanking />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/game"
+                  element={
+                    <PageWrapper>
+                      <CryptoGame />
+                    </PageWrapper>
+                  }
+                />
                 <Route
                   path="/overview"
                   element={

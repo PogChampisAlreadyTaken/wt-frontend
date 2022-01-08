@@ -70,7 +70,7 @@ export default function FriendCard() {
             Add a Friend
           </Button>
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Select your new Friend</DialogTitle>
+            <DialogTitle style={{background: "#24695c", color: "#fff"}}>Select your new Friend</DialogTitle>
             <DialogContent>
               <List
                 sx={{
@@ -91,7 +91,7 @@ export default function FriendCard() {
                         userContext?.friends?.push(user);
                       }}
                     >
-                      <AddIcon></AddIcon>
+                      <AddIcon style={{fill: "#24695c"}}></AddIcon>
                     </IconButton>
                   </ListItem>
                 ))}
@@ -129,7 +129,7 @@ export default function FriendCard() {
       <CardActions></CardActions>
 
       <Dialog open={openAllFriends} onClose={handleClose}>
-        <DialogTitle>Current Friends</DialogTitle>
+        <DialogTitle style={{background: "#24695c", color: "#fff"}}>Current Friends</DialogTitle>
         <DialogContent>
           <List
             sx={{
@@ -153,7 +153,7 @@ export default function FriendCard() {
                     handleClose();
                   }}
                 >
-                  <DeleteIcon></DeleteIcon>{" "}
+                  <DeleteIcon style={{fill: "#24695c"}}></DeleteIcon>{" "}
                 </IconButton>
               </ListItem>
             ))}
@@ -170,7 +170,6 @@ export default function FriendCard() {
 const useStyles = makeStyles({
   frindCard: {
     height: "100%",
-    //background: 'linear-gradient(95deg, #6157f4 30%, #578df4 90%)',
     background: "#24695c",
     boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "#fff",
