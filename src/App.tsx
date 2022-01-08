@@ -38,8 +38,16 @@ function App() {
     user.gameStats = {
       portfolio: {
         ["USD"]: {
-          amount: 50000,
+          amount: 500000,
           name: "USD",
+        },
+        ["Bitcoin"]: {
+          amount: 3,
+          name: "Bitcoin",
+        },
+        ["Ethereum"]: {
+          amount: 7,
+          name: "Ethereum",
         },
       },
       dailyProfit: 1,
