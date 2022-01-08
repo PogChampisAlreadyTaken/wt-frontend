@@ -36,7 +36,6 @@ export function Overview(props: Props) {
           </Grid>
         </Grid>
         <Grid
-          xs={12}
           container
           direction="row"
           spacing={1}

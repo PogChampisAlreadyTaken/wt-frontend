@@ -3,6 +3,39 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
+import { Chart } from "react-google-charts";
+import CardMedia from "@mui/material/CardMedia";
+import FunctionsIcon from '@mui/icons-material/Functions';
+
+export const data = [
+  ["Time", "Price"],
+  [0, 0],
+  [1, 10],
+  [2, 60],
+  [3, 17],
+  [4, 18],
+  [5, 9],
+  [9, 123],
+  [12, 27],
+  [14, 250],
+];
+
+export const options = {
+  chartArea: { backgroundColor: "#0000004d" },
+  backgroundColor: "transparent",
+  lineWidth: 3,
+  pointSize: 10,
+  legend: 'none',
+  hAxis: {
+    textStyle:{color: '#fff'},
+  },
+  vAxis: {
+    textStyle:{color: '#fff'}
+  },
+  series: {
+    0: { curveType: "function", color: '#fff' },
+  },
+};
 
 export default function PortfolioSum() {
   const classes = useStyles();
@@ -10,9 +43,21 @@ export default function PortfolioSum() {
     <Card className={classes.portfolioSum}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Portfolio Sum
+          <FunctionsIcon style={{marginBottom: "-4px"}}/> Portfolio Sum
         </Typography>
+        12938.00 USD
       </CardContent>
+      <CardMedia>
+        <div style={{ backgroundColor: "#24695c" }}  >
+        <Chart
+          chartType="AreaChart"
+          width="100%"
+          height="100%"
+          data={data}
+          options={options}
+        />
+        </div>
+      </CardMedia>
       <CardActions></CardActions>
     </Card>
   );
@@ -21,9 +66,8 @@ export default function PortfolioSum() {
 const useStyles = makeStyles({
   portfolioSum: {
     height: "100%",
-    //background: 'linear-gradient(45deg, #6B6DFE 30%, #B153FF 90%)',
-    background: "#6157f4",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
-    color: "white",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
+    color: "#fff",
   },
 });

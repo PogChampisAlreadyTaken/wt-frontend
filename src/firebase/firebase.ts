@@ -1,7 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { postUser } from '../request/userService';
 
 export function firebaseGoogleLogin(){
+
+  console.log("memememe");
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -41,6 +44,8 @@ signInWithPopup(auth, provider)
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
+    console.log("Hallo1");
+    postUser(user);
     // ...
   }}).catch((error) => {
     // Handle Errors here.
@@ -52,4 +57,7 @@ signInWithPopup(auth, provider)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
+
+
+ 
 }
