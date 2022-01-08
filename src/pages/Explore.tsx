@@ -173,10 +173,12 @@ export const options = {
   backgroundColor: "transparent",
   lineWidth: 1,
   legend: "none",
-  tooltip: { trigger: "none" },
+  enableInteractivity: false,
   series: {
     0: { curveType: "function", color: "#00281b" },
   },
+  hAxis: { textPosition: 'none' },
+  vAxis: { textPosition: 'none' },
 };
 
 export function Explore() {
