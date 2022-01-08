@@ -112,8 +112,8 @@ const useStyles = makeStyles({
   frindCard: {
     height: "100%",
     //background: 'linear-gradient(95deg, #6157f4 30%, #578df4 90%)',
-    background: "#a8ffb0",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
-    color: "#005249",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
+    color: "#fff",
   },
 });
