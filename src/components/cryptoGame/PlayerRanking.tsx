@@ -25,13 +25,20 @@ export function PlayerRanking() {
   }, []);
   return (
     <div>
-      <Typography>Player Overall Ranking</Typography>
+      <Typography variant="h5">Player Overall Ranking</Typography>
       <Card className={classes.card}>
         <Table>
-          <TableHead>
+          <TableHead style={{ background: "#005249" }}>
             <TableRow>
-              <TableCell>Player</TableCell>
-              <TableCell align="right">Profit</TableCell>
+              <TableCell style={{ fontWeight: "bolder", color: "#fff" }}>
+                Player
+              </TableCell>
+              <TableCell
+                style={{ fontWeight: "bolder", color: "#fff" }}
+                align="right"
+              >
+                Profit
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -53,8 +60,9 @@ export function PlayerRanking() {
 const useStyles = makeStyles({
   card: {
     height: "100%",
-    background: "linear-gradient(95deg, #61ff6f 30%, #a8ffb0 90%)",
-
+    background: "#fff",
     color: "#005249",
+    marginLeft: "-5px",
+    marginRight: "5px",
   },
 });
