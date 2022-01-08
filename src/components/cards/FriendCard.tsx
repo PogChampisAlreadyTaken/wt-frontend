@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import PersonIcon from "@mui/icons-material/Person";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Avatar,
   AvatarGroup,
@@ -29,8 +30,11 @@ import { AllUserContext } from "../../context/allUserContext";
 export default function FriendCard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [openAllFriends, setOpenAllFriends] = React.useState(false);
   const [userContext, setUserContext] = React.useContext(UserContext);
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
+
+  React.useEffect(() => {}, [userContext]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,6 +42,7 @@ export default function FriendCard() {
 
   const handleClose = () => {
     setOpen(false);
+    setOpenAllFriends(false);
   };
 
   return (
@@ -83,27 +88,70 @@ export default function FriendCard() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Subscribe</Button>
             </DialogActions>
           </Dialog>
         </Typography>
-        <AvatarGroup
-          max={7}
-          style={{ justifyContent: "center", display: "flex" }}
-          sx={{ marginTop: 3 }}
+
+        <Button
+          onClick={() => {
+            setOpenAllFriends(true);
+          }}
         >
-          {userContext?.friends.map((user: User) => (
-            <Avatar
-              alt={String(user?.name)}
-              src="/broken-image.jpg"
-              sx={{ width: 80, height: 80 }}
-            >
-              {user.name}
-            </Avatar>
-          ))}
-        </AvatarGroup>
+          <AvatarGroup
+            max={7}
+            style={{ justifyContent: "center", display: "flex" }}
+            sx={{ marginTop: 3 }}
+          >
+            {userContext?.friends.map((user: User) => (
+              <Avatar
+                key={String(user.id)}
+                alt={String(user?.name)}
+                src="/broken-image.jpg"
+                sx={{ width: 80, height: 80 }}
+              >
+                {user.name}
+              </Avatar>
+            ))}
+          </AvatarGroup>
+        </Button>
       </CardContent>
       <CardActions></CardActions>
+
+      <Dialog open={openAllFriends} onClose={handleClose}>
+        <DialogTitle>Current Friends</DialogTitle>
+        <DialogContent>
+          <List
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+            }}
+          >
+            {userContext?.friends?.map((user: User, index) => (
+              <ListItem
+                key={String(user?.id)}
+                disableGutters
+                secondaryAction={<IconButton></IconButton>}
+              >
+                <ListItemText primary={user.name} />
+                <IconButton
+                  onClick={() => {
+                    userContext.friends = userContext?.friends.filter(
+                      (element) => element.id !== user.id
+                    );
+                    handleClose();
+                  }}
+                >
+                  <DeleteIcon></DeleteIcon>{" "}
+                </IconButton>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }
