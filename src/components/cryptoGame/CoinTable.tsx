@@ -44,9 +44,35 @@ export function CoinTable() {
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Coin</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Buy</TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+              >
+                Coin
+              </TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+                align="right"
+              >
+                Price
+              </TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+                align="right"
+              >
+                Buy
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

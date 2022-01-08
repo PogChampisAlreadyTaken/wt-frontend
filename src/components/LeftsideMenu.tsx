@@ -44,12 +44,12 @@ export default function LeftsideMenu() {
     },
     {
       text: "CryptoGame",
-      icon: <SportsEsportsIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <SportsEsportsIcon style={{ fill: "#24695c" }}/>,
       onClick: () => navigate("/game"),
     },
     {
       text: "Ranking",
-      icon: <EmojiEventsIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <EmojiEventsIcon style={{ fill: "#24695c" }}/>,
       onClick: () => navigate("/ranking"),
     },
   ];
