@@ -14,7 +14,8 @@ import Divider from "@mui/material/Divider";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import animationData from "../components/animations/crypto-logo.json";
 import Lottie from "react-lottie-player";
-
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
@@ -41,6 +42,16 @@ export default function LeftsideMenu() {
       icon: <CurrencyExchangeIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/exchange"),
     },
+    {
+      text: "CryptoGame",
+      icon: <SportsEsportsIcon style={{ fill: "#a8ffb0" }} />,
+      onClick: () => navigate("/game"),
+    },
+    {
+      text: "Ranking",
+      icon: <EmojiEventsIcon style={{ fill: "#a8ffb0" }} />,
+      onClick: () => navigate("/ranking"),
+    },
   ];
   return (
     <Box sx={{ display: "flex" }}>
@@ -60,7 +71,7 @@ export default function LeftsideMenu() {
             color: "#24695c",
           }}
         >
-          <div style={{width: drawerWidth-48, marginRight: 24}}>
+          <div style={{ width: drawerWidth - 48, marginRight: 24 }}>
             <Lottie
               loop
               animationData={animationData}
