@@ -59,7 +59,7 @@ export function CoinTable() {
                   color: "#fff",
                   fontWeight: "bold",
                 }}
-                align="right"
+                align="center"
               >
                 Price
               </TableCell>
@@ -69,7 +69,7 @@ export function CoinTable() {
                   color: "#fff",
                   fontWeight: "bold",
                 }}
-                align="right"
+                align="center"
               >
                 Buy
               </TableCell>
@@ -85,13 +85,34 @@ export function CoinTable() {
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {row.name}
+                  <TableCell
+                    style={{
+                      display: "flex",
+                      paddingLeft: "16px",
+                      marginLeft: "0px",
+                    }}
+                    component="th"
+                    scope="row"
+                  >
+                    <img
+                      style={{ marginRight: "5px" }}
+                      src={row.image}
+                      alt="Logo"
+                    />
+                    <span
+                      style={{
+                        display: "flex",
+                        marginLeft: "inherit",
+                        marginTop: "3px",
+                      }}
+                    >
+                      {row.name}
+                    </span>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     {row.market_data.current_price}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <IconButton
                       onClick={() => {
                         setOpen(true);
