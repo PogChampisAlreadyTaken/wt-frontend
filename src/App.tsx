@@ -38,7 +38,7 @@ function App() {
     user.gameStats = {
       portfolio: {
         ["USD"]: {
-          amount: 500,
+          amount: 50000,
           name: "USD",
         },
       },
