@@ -1,8 +1,11 @@
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
+import SavingsIcon from '@mui/icons-material/Savings';
+
 
 export default function Portfolio() {
   const classes = useStyles();
@@ -10,7 +13,7 @@ export default function Portfolio() {
     <Card className={classes.portfolio}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Portfolio
+          <SavingsIcon style={{marginBottom: "-4px"}}/> Portfolio
         </Typography>
       </CardContent>
       <CardActions></CardActions>
@@ -21,8 +24,8 @@ export default function Portfolio() {
 const useStyles = makeStyles({
   portfolio: {
     height: "100%",
-    background: "#6157f4",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "white",
   },
 });

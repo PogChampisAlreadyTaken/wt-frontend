@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import PersonIcon from "@mui/icons-material/Person";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Avatar,
   AvatarGroup,
@@ -23,14 +24,27 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { UserContext } from "../../context/userContext";
 import { User } from "../../model";
-import { getUsers } from "../../request/userService";
+import { getUsers, updateUser } from "../../request/userService";
 import { AllUserContext } from "../../context/allUserContext";
+import { updateCurrentUser } from "firebase/auth";
 
 export default function FriendCard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [openAllFriends, setOpenAllFriends] = React.useState(false);
   const [userContext, setUserContext] = React.useContext(UserContext);
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
+
+
+
+  React.useEffect(() => {}, [userContext]);
+
+
+  if(userContext === undefined){
+    console.log("hi");
+    return null;
+  }
+ 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,6 +52,8 @@ export default function FriendCard() {
 
   const handleClose = () => {
     setOpen(false);
+    setOpenAllFriends(false);
+    updateUser(userContext);
   };
 
   return (
@@ -65,7 +81,7 @@ export default function FriendCard() {
               >
                 {allUsers?.map((user: User, index) => (
                   <ListItem
-                    key={String(user?.id)}
+                    key={String(user?._id)}
                     disableGutters
                     secondaryAction={<IconButton></IconButton>}
                   >
@@ -83,27 +99,70 @@ export default function FriendCard() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Subscribe</Button>
             </DialogActions>
           </Dialog>
         </Typography>
-        <AvatarGroup
-          max={7}
-          style={{ justifyContent: "center", display: "flex" }}
-          sx={{ marginTop: 3 }}
+
+        <Button
+          onClick={() => {
+            setOpenAllFriends(true);
+          }}
         >
-          {userContext?.friends?.map((user: User) => (
-            <Avatar
-              alt={String(user?.name)}
-              src={String(user?.photourl)}
-              sx={{ width: 80, height: 80 }}
-            >
-              {user.name}
-            </Avatar>
-          ))}
-        </AvatarGroup>
+          <AvatarGroup
+            max={7}
+            style={{ justifyContent: "center", display: "flex" }}
+            sx={{ marginTop: 3 }}
+          >
+            {userContext?.friends?.map((user: User) => (
+              <Avatar
+                key={String(user._id)}
+                alt={String(user?.name)}
+                src={String(user?.photourl)}
+                sx={{ width: 80, height: 80 }}
+              >
+                {user.name}
+              </Avatar>
+            ))}
+          </AvatarGroup>
+        </Button>
       </CardContent>
       <CardActions></CardActions>
+
+      <Dialog open={openAllFriends} onClose={handleClose}>
+        <DialogTitle>Current Friends</DialogTitle>
+        <DialogContent>
+          <List
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+            }}
+          >
+            {userContext?.friends?.map((user: User, index) => (
+              <ListItem
+                key={String(user?._id)}
+                disableGutters
+                secondaryAction={<IconButton></IconButton>}
+              >
+                <ListItemText primary={user.name} />
+                <IconButton
+                  onClick={() => {
+                    userContext.friends = userContext?.friends?.filter(
+                      (element) => element._id !== user._id
+                    );
+                    handleClose();
+                  }}
+                >
+                  <DeleteIcon></DeleteIcon>{" "}
+                </IconButton>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }
@@ -112,8 +171,8 @@ const useStyles = makeStyles({
   frindCard: {
     height: "100%",
     //background: 'linear-gradient(95deg, #6157f4 30%, #578df4 90%)',
-    background: "#a8ffb0",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
-    color: "#005249",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
+    color: "#fff",
   },
 });

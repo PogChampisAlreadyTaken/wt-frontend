@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { userInfo } from 'os';
 import { emptyUser, User } from '../model';
-import { postUser } from '../request/userService';
+import { checkFirebaseUserExists, getUser, postUser } from '../request/userService';
 
 export async function firebaseGoogleLogin(){
 
@@ -37,10 +37,14 @@ provider.setCustomParameters({
 
 const auth = getAuth();
 const user = signInWithPopup(auth, provider)
-  .then((result) => {
+  .then(async (result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     // The signed-in user info.
     const user = result.user;
+
+    if(await checkFirebaseUserExists(user.uid)==true){
+      return getUser(user.uid).then(user=>user);
+    }
     return postUser(user).then(user=>user);
     
     // ...

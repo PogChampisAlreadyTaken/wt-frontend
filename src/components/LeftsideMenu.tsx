@@ -14,17 +14,9 @@ import Divider from "@mui/material/Divider";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import animationData from "../components/animations/crypto-logo.json";
 import Lottie from "react-lottie-player";
-
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 const drawerWidth = 240;
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData,
-  rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice",
-  },
-};
 
 export default function LeftsideMenu() {
   const navigate = useNavigate();
@@ -32,23 +24,33 @@ export default function LeftsideMenu() {
   const itemsList = [
     {
       text: "Overview",
-      icon: <MenuIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <MenuIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/overview"),
     },
     {
       text: "History",
-      icon: <HistoryIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <HistoryIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/history"),
     },
     {
       text: "Explore",
-      icon: <ExploreIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <ExploreIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/explore"),
     },
     {
       text: "Exchange",
-      icon: <CurrencyExchangeIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <CurrencyExchangeIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/exchange"),
+    },
+    {
+      text: "CryptoGame",
+      icon: <SportsEsportsIcon style={{ fill: "#a8ffb0" }} />,
+      onClick: () => navigate("/game"),
+    },
+    {
+      text: "Ranking",
+      icon: <EmojiEventsIcon style={{ fill: "#a8ffb0" }} />,
+      onClick: () => navigate("/ranking"),
     },
   ];
   return (
@@ -59,15 +61,17 @@ export default function LeftsideMenu() {
         sx={{
           zIndex: 1300,
           ml: `${drawerWidth}px`,
-          background: "#00281b",
+          background: "#fff",
+          color: "#24695c",
         }}
       >
         <Toolbar
           style={{
-            background: "#00281b",
+            background: "#fff",
+            color: "#24695c",
           }}
         >
-          <div style={{width: drawerWidth-48, marginRight: 24}}>
+          <div style={{ width: drawerWidth - 48, marginRight: 24 }}>
             <Lottie
               loop
               animationData={animationData}
@@ -83,7 +87,7 @@ export default function LeftsideMenu() {
       </AppBar>
       <Drawer
         style={{
-          background: "#00281b",
+          background: "#fff",
         }}
         sx={{
           width: drawerWidth,
@@ -91,9 +95,10 @@ export default function LeftsideMenu() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            background: "#00281b",
-            color: "#ffffff",
+            background: "#fff",
+            color: "#fff",
           },
+          
         }}
         variant="permanent"
         anchor="left"
@@ -108,7 +113,7 @@ export default function LeftsideMenu() {
                 isLogedIn && (
                   <ListItem button key={text} onClick={onClick}>
                     {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                    <ListItemText primary={text} />
+                    <ListItemText primary={text} style={{color: "#24695c", fontWeight: "bold"}} />
                   </ListItem>
                 )
               );
@@ -117,7 +122,7 @@ export default function LeftsideMenu() {
             <ListItem button key="Login" onClick={() => navigate("/")}>
               <ListItemIcon>
                 {" "}
-                <MenuIcon style={{ fill: "#6157f4" }} />
+                <MenuIcon style={{ fill: "#24695c" }} />
               </ListItemIcon>
               <ListItemText primary="Login" />
             </ListItem>
