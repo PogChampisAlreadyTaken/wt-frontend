@@ -59,7 +59,9 @@ export default function FriendCard() {
             Add a Friend
           </Button>
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle style={{background: "#24695c", color: "#fff"}}>Select your new Friend</DialogTitle>
+            <DialogTitle style={{ background: "#24695c", color: "#fff" }}>
+              Select your new Friend
+            </DialogTitle>
             <DialogContent>
               <List
                 sx={{
@@ -80,14 +82,20 @@ export default function FriendCard() {
                         userContext?.friends?.push(user);
                       }}
                     >
-                      <AddIcon style={{fill: "#24695c"}}></AddIcon>
+                      <AddIcon style={{ fill: "#24695c" }}></AddIcon>
                     </IconButton>
                   </ListItem>
                 ))}
               </List>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
+              <Button
+                variant="contained"
+                style={{ padding: 10, background: "#005249", color: "#fff" }}
+                onClick={handleClose}
+              >
+                Cancel
+              </Button>
             </DialogActions>
           </Dialog>
         </Typography>
@@ -118,13 +126,15 @@ export default function FriendCard() {
       <CardActions></CardActions>
 
       <Dialog open={openAllFriends} onClose={handleClose}>
-        <DialogTitle style={{background: "#24695c", color: "#fff"}}>Current Friends</DialogTitle>
+        <DialogTitle style={{ background: "#24695c", color: "#fff" }}>
+          Current Friends
+        </DialogTitle>
         <DialogContent>
           <List
-            sx={{
+            style={{
               width: "100%",
               maxWidth: 360,
-              bgcolor: "background.paper",
+              background: "#fff",
             }}
           >
             {userContext?.friends?.map((user: User, index) => (
@@ -142,14 +152,20 @@ export default function FriendCard() {
                     handleClose();
                   }}
                 >
-                  <DeleteIcon style={{fill: "#24695c"}}></DeleteIcon>{" "}
+                  <DeleteIcon style={{ fill: "#24695c" }}></DeleteIcon>{" "}
                 </IconButton>
               </ListItem>
             ))}
           </List>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button
+            variant="contained"
+            style={{ padding: 10, background: "#005249", color: "#fff" }}
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
         </DialogActions>
       </Dialog>
     </Card>
