@@ -1,8 +1,17 @@
-import React from "react";
+import * as React from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import PageWrapper from "./components/PageWrapper";
-import { Overview, Login, History, Explore, Exchange } from "./pages";
+import {
+  Overview,
+  Login,
+  History,
+  Explore,
+  Exchange,
+  CryptoGame,
+  GameRanking,
+} from "./pages";
 import { Coin, CoinList } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
@@ -26,6 +35,22 @@ function App() {
               element={
                 <PageWrapper>
                   <Login />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/ranking"
+              element={
+                <PageWrapper>
+                  <GameRanking />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/game"
+              element={
+                <PageWrapper>
+                  <CryptoGame />
                 </PageWrapper>
               }
             />

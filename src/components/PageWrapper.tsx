@@ -1,6 +1,6 @@
-import React from "react";
-import LeftsideMenu from "./LeftsideMenu";
+import * as React from "react";
 
+import LeftsideMenu from "./LeftsideMenu";
 
 interface props {}
 
@@ -13,11 +13,11 @@ export default function PageWrapper(props: React.PropsWithChildren<props>) {
         left: 240,
         width: "calc(100% - 240px)",
         height: "100%",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
       }}
     >
-        <LeftsideMenu />
-        {props.children}
+      <LeftsideMenu />
+      {props.children}
     </div>
   );
 }
