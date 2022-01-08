@@ -77,7 +77,7 @@ export default function FriendCard() {
                     <ListItemText primary={user.name} />
                     <IconButton
                       onClick={() => {
-                        userContext?.friends.push(user);
+                        userContext?.friends?.push(user);
                       }}
                     >
                       <AddIcon></AddIcon>
@@ -102,7 +102,7 @@ export default function FriendCard() {
             style={{ justifyContent: "center", display: "flex" }}
             sx={{ marginTop: 3 }}
           >
-            {userContext?.friends.map((user: User) => (
+            {userContext?.friends?.map((user: User) => (
               <Avatar
                 key={String(user.id)}
                 alt={String(user?.name)}
@@ -136,10 +136,9 @@ export default function FriendCard() {
                 <ListItemText primary={user.name} />
                 <IconButton
                   onClick={() => {
-                    userContext.friends = userContext?.friends.filter(
+                    userContext.friends = userContext?.friends?.filter(
                       (element) => element.id !== user.id
                     );
-                    handleClose();
                   }}
                 >
                   <DeleteIcon></DeleteIcon>{" "}
@@ -160,8 +159,8 @@ const useStyles = makeStyles({
   frindCard: {
     height: "100%",
     //background: 'linear-gradient(95deg, #6157f4 30%, #578df4 90%)',
-    background: "#a8ffb0",
-    boxShadow: "0 3px 5px 2px rgba(0, 0, 0, 0.1)",
-    color: "#005249",
+    background: "#24695c",
+    boxShadow: "0 0 1px 0px rgb(0 0 0)",
+    color: "#fff",
   },
 });
