@@ -72,7 +72,7 @@ export default function FriendCard() {
                     <ListItemText primary={user.name} />
                     <IconButton
                       onClick={() => {
-                        userContext?.friends.push(user);
+                        userContext?.friends?.push(user);
                       }}
                     >
                       <AddIcon></AddIcon>
@@ -92,10 +92,10 @@ export default function FriendCard() {
           style={{ justifyContent: "center", display: "flex" }}
           sx={{ marginTop: 3 }}
         >
-          {userContext?.friends.map((user: User) => (
+          {userContext?.friends?.map((user: User) => (
             <Avatar
               alt={String(user?.name)}
-              src="/broken-image.jpg"
+              src={String(user?.photourl)}
               sx={{ width: 80, height: 80 }}
             >
               {user.name}

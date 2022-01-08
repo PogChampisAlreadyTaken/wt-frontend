@@ -3,22 +3,18 @@ import { Coin, CoinList, User } from "../model";
 
 
 
-export async function postUser(user: FirebaseUser) {
+export async function postUser(user: FirebaseUser): Promise<User> {
   const url = "http://localhost:8080/users/";
   console.log("hallo");
-  fetch(url, {
+  const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify({id: user.uid, name: user.displayName, email: user.email })
-  }).then(response => response.json())
-  .then(data=> {
-      console.log('Success:', data);
-  }).catch((error)=>{
-      console.error('Error:', error)
-  });
+    body: JSON.stringify({id: user.uid, name: user.displayName, email: user.email, photourl: user.photoURL })
+  })
+  return response.json();
 }
 
 export async function getUsers(): Promise<User[]> {

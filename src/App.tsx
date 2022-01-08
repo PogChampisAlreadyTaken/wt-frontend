@@ -20,12 +20,6 @@ function App() {
       getAllCoins().then((coins) => setCoin(coins));
     }
     getUsers().then(setAllUsers);
-    const user: User = {
-      id: "1",
-      name: "Hanswurst",
-      email: "hans@flamme",
-      friends: [{ id: "2", name: "hans", email: "hansmail@blah", friends: [] }],
-    };
     setUser(user);
   }, []);
 

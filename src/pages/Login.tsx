@@ -9,9 +9,14 @@ import SendIcon from "@mui/icons-material/Send";
 import animationData from "../components/animations/login.json";
 import { firebaseGoogleLogin } from "../firebase/firebase";
 import Lottie from "react-lottie-player";
+import { UserContext } from "../context/userContext";
+
 
 export function Login() {
   
+
+  const [userContext, setUserContext] = React.useContext(UserContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -79,8 +84,7 @@ export function Login() {
             endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
             onClick={() => {
-              console.log("Hallooo");
-              firebaseGoogleLogin();
+              const user = firebaseGoogleLogin().then(user=>(setUserContext(user)));
             }}
           >
             Sign In with Google
