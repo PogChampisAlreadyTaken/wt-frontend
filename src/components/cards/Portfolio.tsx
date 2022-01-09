@@ -6,8 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import SavingsIcon from "@mui/icons-material/Savings";
 import { UserContext } from "../../context/userContext";
-import { Portfolio } from "../../model";
+import { Coin, Portfolio } from "../../model";
 import { CoinContext } from "../../context/coinContext";
+import CoinSellDialog from "../cryptoGame/CoinSellDialog";
 import {
   Button,
   Table,
@@ -17,11 +18,16 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import CoinBuyDialog from "../cryptoGame/CoinBuyDialog";
 export default function PortfolioCard() {
   const classes = useStyles();
 
   const [userContext, setUserContext] = React.useContext(UserContext);
   const [coinContext, setCoinContext] = React.useContext(CoinContext);
+  const [openSellDialog, setOpenSellDialog] = React.useState(false);
+  const [openBuyDialog, setOpenBuyDialog] = React.useState(false);
+  const [coinForSell, setCoinForSell] = React.useState<Coin>();
+  const [coinForBuy, setCoinForBuy] = React.useState<Coin>();
 
   if (userContext === undefined) {
     return null;
@@ -175,7 +181,32 @@ export default function PortfolioCard() {
                         textAlign: "center",
                       }}
                     >
-                      <Button>Buy</Button> <Button>Sell</Button>
+                      <Button
+                        onClick={() => {
+                          setOpenBuyDialog(!openBuyDialog);
+                          setCoinForBuy(coin);
+                        }}
+                      >
+                        Buy
+                      </Button>{" "}
+                      <CoinBuyDialog
+                        onClose={setOpenBuyDialog}
+                        open={openBuyDialog}
+                        coin={coinForBuy}
+                      />
+                      <Button
+                        onClick={() => {
+                          setOpenSellDialog(!openSellDialog);
+                          setCoinForSell(coin);
+                        }}
+                      >
+                        Sell
+                      </Button>
+                      <CoinSellDialog
+                        onClose={setOpenSellDialog}
+                        open={openSellDialog}
+                        coin={coinForSell}
+                      ></CoinSellDialog>
                     </TableCell>
                   </TableRow>
                 );
