@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 
 export default function CapitalCard() {
@@ -20,8 +19,9 @@ export default function CapitalCard() {
         </Typography>
         <Typography variant="h3" component="h2" style={{ marginTop: "30px" }}>
           {"$" +
-            userContext?.gameStats?.portfolio["USD"].amount
-              .toString()
+            userContext?.gameStats.portfolio
+              .get("USD")
+              ?.amount.toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </Typography>
       </CardContent>

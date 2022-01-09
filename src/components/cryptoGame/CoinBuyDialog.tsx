@@ -27,18 +27,17 @@ export default function CoinBuyDialog(props: Props) {
   const [user, setUser] = React.useState(emptyUser());
   const classes = useStyles();
   user.gameStats = {
-    portfolio: {
-      ["USD"]: {
-        amount: 500,
-        name: "USD",
-      },
-    },
+    portfolio: new Map(),
+    portfolioValueYesterday: 0,
+    lastRoundProfit: 0,
     dailyProfit: 1,
     totalProfit: 2,
     roundProfit: 3,
     recentTransactions: [],
   };
-  const [max, setMax] = React.useState(user.gameStats?.portfolio["USD"].amount);
+  const [max, setMax] = React.useState(
+    user.gameStats.portfolio.get("USD")?.amount ?? 100
+  );
   if (coin === undefined) {
     return null;
   }
@@ -50,6 +49,7 @@ export default function CoinBuyDialog(props: Props) {
       {
         name: coin.name,
         amount: USD,
+        activity: "Buy",
         price: coin.market_data.current_price,
         date: Date.now(),
       },
@@ -81,7 +81,7 @@ export default function CoinBuyDialog(props: Props) {
           onChange={(event: any) => {
             setUSD(event.target.value);
           }}
-          max={user.gameStats?.portfolio["USD"].amount}
+          max={user.gameStats.portfolio.get("USD")?.amount}
           aria-label="Default"
           valueLabelDisplay="auto"
         />
@@ -103,7 +103,7 @@ export default function CoinBuyDialog(props: Props) {
             value={USD}
             inputProps={{
               min: 0,
-              max: user.gameStats?.portfolio["USD"].amount,
+              max: user.gameStats.portfolio.get("USD")?.amount,
             }}
             onChange={(event: any) => {
               var value = parseInt(event.target.value, 10);

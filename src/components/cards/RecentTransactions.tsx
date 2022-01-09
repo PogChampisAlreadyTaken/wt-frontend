@@ -81,7 +81,7 @@ export default function RecentTransactions() {
               {userContext?.gameStats?.recentTransactions.map(
                 (transaction, index) => {
                   const coin = coinContext.coins.find(
-                    (coin) => coin.name == transaction.name
+                    (coin) => coin.name === transaction.name
                   );
                   return (
                     <TableRow

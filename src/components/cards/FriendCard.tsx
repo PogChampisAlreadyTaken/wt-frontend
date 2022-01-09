@@ -13,20 +13,17 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   IconButton,
   List,
   ListItem,
   ListItemText,
-  TextField,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { UserContext } from "../../context/userContext";
 import { User } from "../../model";
-import { getUsers, updateUser } from "../../request/userService";
+import { updateUser } from "../../request/userService";
 import { AllUserContext } from "../../context/allUserContext";
-import { updateCurrentUser } from "firebase/auth";
 
 export default function FriendCard() {
   const classes = useStyles();
@@ -35,16 +32,12 @@ export default function FriendCard() {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
 
-
-
   React.useEffect(() => {}, [userContext]);
 
-
-  if(userContext === undefined){
+  if (userContext === undefined) {
     console.log("hi");
     return null;
   }
- 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -125,7 +118,7 @@ export default function FriendCard() {
               <Avatar
                 key={String(user._id)}
                 alt={String(user?.name)}
-                src={String(user?.photourl)}
+                src={String(user?.photoUrl)}
                 sx={{ width: 80, height: 80 }}
               >
                 {user.name}

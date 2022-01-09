@@ -8,11 +8,10 @@ import {
   Login,
   History,
   Explore,
-  Exchange,
   CryptoGame,
   GameRanking,
 } from "./pages";
-import { Coin, CoinList, User } from "./model";
+import { CoinList, User } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
 import { UserContext } from "./context/userContext";
@@ -33,32 +32,33 @@ function App() {
       _id: "1",
       name: "Hanswurst",
       email: "hans@flamme",
-      friends: [{ _id: "2", name: "hans", email: "hansmail@blah", friends: [] }],
-    };
-    user.gameStats = {
-      portfolio: {
-        ["USD"]: {
-          amount: 500000,
-          name: "USD",
-        },
-        ["Bitcoin"]: {
-          amount: 3,
-          name: "Bitcoin",
-        },
-        ["Ethereum"]: {
-          amount: 7,
-          name: "Ethereum",
-        },
+      gameStats: {
+        portfolio: new Map(),
+        portfolioValueYesterday: 0,
+        lastRoundProfit: 0,
+        dailyProfit: 1,
+        totalProfit: 2,
+        roundProfit: 3,
+        recentTransactions: [],
       },
-      dailyProfit: 1,
-      totalProfit: 2,
-      roundProfit: 3,
-      recentTransactions: [],
     };
+    user.gameStats.portfolio.set("USD", {
+      amount: 500000,
+      name: "USD",
+    });
+    user.gameStats.portfolio.set("Bitcoin", {
+      amount: 3,
+      name: "Bitcoin",
+    });
+    user.gameStats.portfolio.set("Ethereum", {
+      amount: 7,
+      name: "Ethereum",
+    });
     const transaction = {
       name: "Bitcoin",
       amount: 255,
       price: 432323,
+      activity: "Buy",
       date: Date.now(),
     };
     user.gameStats?.recentTransactions.push(transaction);
@@ -117,14 +117,6 @@ function App() {
                   element={
                     <PageWrapper>
                       <Explore />
-                    </PageWrapper>
-                  }
-                />
-                <Route
-                  path="/exchange"
-                  element={
-                    <PageWrapper>
-                      <Exchange />
                     </PageWrapper>
                   }
                 />

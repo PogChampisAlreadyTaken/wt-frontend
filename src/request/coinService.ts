@@ -1,4 +1,4 @@
-import { Coin, CoinList } from "../model";
+import { CoinList } from "../model";
 
 export async function getAllCoins(): Promise<CoinList> {
   const url = "https://wt-backend-liimootbm.cloud.okteto.net/coins/list";
