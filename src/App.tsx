@@ -8,7 +8,6 @@ import {
   Login,
   History,
   Explore,
-  Exchange,
   CryptoGame,
   GameRanking,
 } from "./pages";
@@ -118,14 +117,6 @@ function App() {
                   element={
                     <PageWrapper>
                       <Explore />
-                    </PageWrapper>
-                  }
-                />
-                <Route
-                  path="/exchange"
-                  element={
-                    <PageWrapper>
-                      <Exchange />
                     </PageWrapper>
                   }
                 />

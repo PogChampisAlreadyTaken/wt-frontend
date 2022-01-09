@@ -105,8 +105,7 @@ export default function PortfolioCard() {
                     textAlign: "center",
                   }}
                 >
-                  {" "}
-                  Buy | Sell{" "}
+                  Buy | Sell
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -116,13 +115,6 @@ export default function PortfolioCard() {
                   (coin) => coin.name === portfolio.name
                 );
                 return (
-                  <TableRow key={index}>
-                    <TableCell>{portfolio.name}</TableCell>
-                    <TableCell>{portfolio.amount}</TableCell>
-                    <TableCell>{coin?.market_data.current_price}</TableCell>
-                    <TableCell>
-                      {coin?.market_data?.current_price !== undefined
-
                   <TableRow key={index}>
                     <TableCell
                       style={{
@@ -136,10 +128,7 @@ export default function PortfolioCard() {
                         src={coin?.image}
                         alt="Logo"
                       />
-                      <span style={{ marginTop: "3px" }}>
-                        {" "}
-                        {portfolio.name}
-                      </span>
+                      <span style={{ marginTop: "3px" }}>{portfolio.name}</span>
                     </TableCell>
                     <TableCell
                       style={{
