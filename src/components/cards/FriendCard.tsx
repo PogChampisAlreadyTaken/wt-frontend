@@ -45,7 +45,6 @@ export default function FriendCard() {
   const handleClose = () => {
     setOpen(false);
     setOpenAllFriends(false);
-    console.log(JSON.stringify(userContext));
     updateUser(userContext);
   };
 
