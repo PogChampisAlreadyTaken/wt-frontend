@@ -40,15 +40,74 @@ export default function PortfolioCard() {
           <SavingsIcon style={{ marginBottom: "-4px" }} /> Portfolio
         </Typography>
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <Table
+            sx={{ minWidth: 650, marginTop: "10px" }}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
-                <TableCell>Coin</TableCell>
-                <TableCell>Amount</TableCell>
-                <TableCell>Current Value</TableCell>
-                <TableCell>Value in $</TableCell>
-                <TableCell>Change 7d</TableCell>
-                <TableCell></TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "left",
+                  }}
+                >
+                  Coin
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  Amount
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  Current Value
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  Value in $
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  Change 7d
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  {" "}
+                  Buy | Sell{" "}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -63,13 +122,70 @@ export default function PortfolioCard() {
                     <TableCell>{coin?.market_data.current_price}</TableCell>
                     <TableCell>
                       {coin?.market_data?.current_price !== undefined
+
+                  <TableRow key={index}>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "left",
+                      }}
+                    >
+                      <img
+                        style={{ marginRight: "5px", marginBottom: "-7px" }}
+                        src={coin?.image}
+                        alt="Logo"
+                      />
+                      <span style={{ marginTop: "3px" }}>
+                        {" "}
+                        {portfolio.name}
+                      </span>
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "center",
+                      }}
+                    >
+                      {portfolio.amount}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "center",
+                      }}
+                    >
+                      {coin?.market_data.current_price}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "center",
+                      }}
+                    >
+                      {coin?.market_data?.current_price != undefined
                         ? coin?.market_data?.current_price * portfolio.amount
                         : 0}
                     </TableCell>
-                    <TableCell>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "center",
+                      }}
+                    >
                       {coin?.market_data.price_change_percentage_7d}%
                     </TableCell>
-                    <TableCell>
+                    <TableCell
+                      style={{
+                        background: "#005249",
+                        color: "#fff",
+                        textAlign: "center",
+                      }}
+                    >
                       <Button>Buy</Button> <Button>Sell</Button>
                     </TableCell>
                   </TableRow>

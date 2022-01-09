@@ -50,6 +50,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   recent Value
@@ -59,6 +60,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   Paid
@@ -68,6 +70,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   Date
@@ -105,6 +108,7 @@ export default function RecentTransactions() {
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {transaction.price}
@@ -113,6 +117,7 @@ export default function RecentTransactions() {
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {transaction.amount}
@@ -121,6 +126,7 @@ export default function RecentTransactions() {
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {getDayAndTime(transaction.date)}
