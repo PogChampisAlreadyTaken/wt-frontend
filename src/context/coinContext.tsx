@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Coin, CoinList } from "../model";
+import { CoinList } from "../model";
 
 type Dispatch = (coins: CoinList) => void;
 type State = CoinList;

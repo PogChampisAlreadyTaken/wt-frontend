@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { getAllCoins } from "../request/coinService";
-import { checkData, Coin } from "../model";
+import { checkData } from "../model";
 import { CoinContext } from "../context/coinContext";
 import { Chart } from "react-google-charts";
 
@@ -233,9 +233,6 @@ export function Explore() {
           </TableHead>
           <TableBody>
             {coinContext.coins.map((row) => {
-              {
-                if (!row) return null;
-              }
               return (
                 <TableRow
                   key={row.name}

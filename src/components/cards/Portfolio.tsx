@@ -2,12 +2,10 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import SavingsIcon from "@mui/icons-material/Savings";
 import { UserContext } from "../../context/userContext";
-import AddIcon from "@mui/icons-material/Add";
 import { Portfolio } from "../../model";
 import { CoinContext } from "../../context/coinContext";
 import {
@@ -25,12 +23,13 @@ export default function PortfolioCard() {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const [coinContext, setCoinContext] = React.useContext(CoinContext);
 
+  if (userContext === undefined) {
+    return null;
+  }
+
   const getRecords = (): Portfolio[] => {
-    const portfolio = userContext?.gameStats?.portfolio;
-    const coinArray = [];
-    for (let i in portfolio) {
-      coinArray.push(portfolio[i]);
-    }
+    const portfolio = userContext.gameStats.portfolio;
+    const coinArray = Array.from(portfolio.values());
     return coinArray;
   };
 
@@ -53,17 +52,17 @@ export default function PortfolioCard() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {getRecords().map((portfolio) => {
+              {getRecords().map((portfolio, index) => {
                 const coin = coinContext.coins.find(
-                  (coin) => coin.name == portfolio.name
+                  (coin) => coin.name === portfolio.name
                 );
                 return (
-                  <TableRow>
+                  <TableRow key={index}>
                     <TableCell>{portfolio.name}</TableCell>
                     <TableCell>{portfolio.amount}</TableCell>
                     <TableCell>{coin?.market_data.current_price}</TableCell>
                     <TableCell>
-                      {coin?.market_data?.current_price != undefined
+                      {coin?.market_data?.current_price !== undefined
                         ? coin?.market_data?.current_price * portfolio.amount
                         : 0}
                     </TableCell>

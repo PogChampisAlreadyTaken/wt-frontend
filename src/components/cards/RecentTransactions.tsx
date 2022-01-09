@@ -29,7 +29,11 @@ export default function RecentTransactions() {
           <SummarizeIcon style={{ marginBottom: "-4px" }} /> Recent Transactions
         </Typography>
         <TableContainer>
-          <Table sx={{ minWidth: 650, marginTop: "10px" }} size="small" aria-label="a dense table">
+          <Table
+            sx={{ minWidth: 650, marginTop: "10px" }}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell
@@ -74,7 +78,7 @@ export default function RecentTransactions() {
               {userContext?.gameStats?.recentTransactions.map(
                 (transaction, index) => {
                   const coin = coinContext.coins.find(
-                    (coin) => coin.name == transaction.name
+                    (coin) => coin.name === transaction.name
                   );
                   return (
                     <TableRow
@@ -87,8 +91,15 @@ export default function RecentTransactions() {
                           color: "#fff",
                         }}
                       >
-                        <img style={{marginRight: "5px", marginBottom: "-7px"}} src={coin?.image} alt="Logo" />
-                        <span style={{marginTop: "3px"}}> {transaction.name}</span>
+                        <img
+                          style={{ marginRight: "5px", marginBottom: "-7px" }}
+                          src={coin?.image}
+                          alt="Logo"
+                        />
+                        <span style={{ marginTop: "3px" }}>
+                          {" "}
+                          {transaction.name}
+                        </span>
                       </TableCell>
                       <TableCell
                         style={{
