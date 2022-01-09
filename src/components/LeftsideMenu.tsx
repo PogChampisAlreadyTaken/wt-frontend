@@ -11,7 +11,6 @@ import HistoryIcon from "@mui/icons-material/History";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import animationData from "../components/animations/crypto-logo.json";
 import Lottie from "react-lottie-player";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -38,18 +37,13 @@ export default function LeftsideMenu() {
       onClick: () => navigate("/explore"),
     },
     {
-      text: "Exchange",
-      icon: <CurrencyExchangeIcon style={{ fill: "#24695c" }} />,
-      onClick: () => navigate("/exchange"),
-    },
-    {
       text: "CryptoGame",
-      icon: <SportsEsportsIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <SportsEsportsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/game"),
     },
     {
       text: "Ranking",
-      icon: <EmojiEventsIcon style={{ fill: "#a8ffb0" }} />,
+      icon: <EmojiEventsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/ranking"),
     },
   ];
@@ -98,7 +92,6 @@ export default function LeftsideMenu() {
             background: "#fff",
             color: "#fff",
           },
-          
         }}
         variant="permanent"
         anchor="left"
@@ -113,7 +106,10 @@ export default function LeftsideMenu() {
                 isLogedIn && (
                   <ListItem button key={text} onClick={onClick}>
                     {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                    <ListItemText primary={text} style={{color: "#24695c", fontWeight: "bold"}} />
+                    <ListItemText
+                      primary={text}
+                      style={{ color: "#24695c", fontWeight: "bold" }}
+                    />
                   </ListItem>
                 )
               );

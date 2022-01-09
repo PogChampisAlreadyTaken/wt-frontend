@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import * as React from "react";
 import CapitalCard from "../cards/Capital";
-import Portfolio from "../cards/Portfolio";
+import PortfolioCard from "../cards/Portfolio";
 import RecentTransactions from "../cards/RecentTransactions";
 
 export function GameDashboard() {
@@ -11,7 +11,7 @@ export function GameDashboard() {
         <CapitalCard />
       </Grid>
       <Grid item xs={12}>
-        <Portfolio />
+        <PortfolioCard />
       </Grid>
       <Grid item xs={12}>
         <RecentTransactions />

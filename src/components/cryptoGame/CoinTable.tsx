@@ -44,9 +44,35 @@ export function CoinTable() {
         <Table sx={{ minWidth: 200 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Coin</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Buy</TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+              >
+                Coin
+              </TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+                align="center"
+              >
+                Price
+              </TableCell>
+              <TableCell
+                style={{
+                  background: "#005249",
+                  color: "#fff",
+                  fontWeight: "bold",
+                }}
+                align="center"
+              >
+                Buy
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -59,13 +85,34 @@ export function CoinTable() {
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {row.name}
+                  <TableCell
+                    style={{
+                      display: "flex",
+                      paddingLeft: "16px",
+                      marginLeft: "0px",
+                    }}
+                    component="th"
+                    scope="row"
+                  >
+                    <img
+                      style={{ marginRight: "5px" }}
+                      src={row.image}
+                      alt="Logo"
+                    />
+                    <span
+                      style={{
+                        display: "flex",
+                        marginLeft: "inherit",
+                        marginTop: "3px",
+                      }}
+                    >
+                      {row.name}
+                    </span>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     {row.market_data.current_price}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <IconButton
                       onClick={() => {
                         setOpen(true);

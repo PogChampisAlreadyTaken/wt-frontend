@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { getAllCoins } from "../request/coinService";
-import { checkData, Coin } from "../model";
+import { checkData } from "../model";
 import { CoinContext } from "../context/coinContext";
 import { Chart } from "react-google-charts";
 
@@ -167,7 +167,6 @@ export const data = [
   [1532995200000, 8185.921138302329],
 ];
 
-
 export const options = {
   chartArea: { backgroundColor: "white" },
   backgroundColor: "transparent",
@@ -177,8 +176,8 @@ export const options = {
   series: {
     0: { curveType: "function", color: "#00281b" },
   },
-  hAxis: { textPosition: 'none' },
-  vAxis: { textPosition: 'none' },
+  hAxis: { textPosition: "none" },
+  vAxis: { textPosition: "none" },
 };
 
 export function Explore() {
@@ -195,21 +194,45 @@ export function Explore() {
     <div className={classes.exploreTable}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead style={{background: "#24695c"}}>
+          <TableHead style={{ background: "#24695c" }}>
             <TableRow>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}}>Coin</TableCell>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}} align="right">Price</TableCell>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}} align="right">Rank</TableCell>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}} align="right">Market Cap</TableCell>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}} align="right">Last 7 Days</TableCell>
-              <TableCell style={{color: "#fff", fontWeight: "bold"}} align="right">Chart</TableCell>
+              <TableCell style={{ color: "#fff", fontWeight: "bold" }}>
+                Coin
+              </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="right"
+              >
+                Price
+              </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="right"
+              >
+                Rank
+              </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="right"
+              >
+                Market Cap
+              </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="right"
+              >
+                Last 7 Days
+              </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="right"
+              >
+                Chart
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {coinContext.coins.map((row) => {
-              {
-                if (!row) return null;
-              }
               return (
                 <TableRow
                   key={row.name}

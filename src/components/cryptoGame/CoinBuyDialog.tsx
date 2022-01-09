@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import { Coin, emptyUser } from "../../model";
 import { postTransaction } from "../../request/gameService";
+import { makeStyles } from "@material-ui/core/styles";
 
 interface Props {
   onClose: (open: boolean) => void;
@@ -24,19 +25,19 @@ export default function CoinBuyDialog(props: Props) {
   const [USD, setUSD] = React.useState<number>(0.0);
   const [currentCoin, setCurrentCoin] = React.useState(0.0);
   const [user, setUser] = React.useState(emptyUser());
+  const classes = useStyles();
   user.gameStats = {
-    portfolio: {
-      ["USD"]: {
-        amount: 500,
-        name: "USD",
-      },
-    },
+    portfolio: new Map(),
+    portfolioValueYesterday: 0,
+    lastRoundProfit: 0,
     dailyProfit: 1,
     totalProfit: 2,
     roundProfit: 3,
     recentTransactions: [],
   };
-  const [max, setMax] = React.useState(user.gameStats?.portfolio["USD"].amount);
+  const [max, setMax] = React.useState(
+    user.gameStats.portfolio.get("USD")?.amount ?? 100
+  );
   if (coin === undefined) {
     return null;
   }
@@ -48,10 +49,11 @@ export default function CoinBuyDialog(props: Props) {
       {
         name: coin.name,
         amount: USD,
+        activity: "Buy",
         price: coin.market_data.current_price,
         date: Date.now(),
       },
-      user.id
+      user._id
     );
   };
 
@@ -60,15 +62,26 @@ export default function CoinBuyDialog(props: Props) {
   }
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Buy {coin.name}</DialogTitle>
+      <DialogTitle
+        style={{
+          background: "#005249",
+          color: "#fff",
+          fontWeight: "bold",
+        }}
+      >
+        Buy {coin.name}
+      </DialogTitle>
       <DialogContent style={{ padding: 50 }}>
         <Slider
+          style={{
+            color: "#005249",
+          }}
           value={typeof USD === "number" ? USD : 0}
           min={0}
           onChange={(event: any) => {
             setUSD(event.target.value);
           }}
-          max={user.gameStats?.portfolio["USD"].amount}
+          max={user.gameStats.portfolio.get("USD")?.amount}
           aria-label="Default"
           valueLabelDisplay="auto"
         />
@@ -82,6 +95,7 @@ export default function CoinBuyDialog(props: Props) {
             USD
           </Typography>
           <TextField
+            className={classes.overrides}
             id="outlined-USD"
             label="USD"
             fullWidth
@@ -89,7 +103,7 @@ export default function CoinBuyDialog(props: Props) {
             value={USD}
             inputProps={{
               min: 0,
-              max: user.gameStats?.portfolio["USD"].amount,
+              max: user.gameStats.portfolio.get("USD")?.amount,
             }}
             onChange={(event: any) => {
               var value = parseInt(event.target.value, 10);
@@ -115,6 +129,7 @@ export default function CoinBuyDialog(props: Props) {
             {coin.name}
           </Typography>
           <TextField
+            className={classes.overrides}
             id="outlined-Coin"
             label="Coin"
             fullWidth
@@ -133,14 +148,35 @@ export default function CoinBuyDialog(props: Props) {
         <Button
           onClick={handleClose}
           variant="contained"
-          style={{ padding: 10 }}
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
         >
           Cancel
         </Button>
-        <Button onClick={handleBuy} variant="contained" style={{ padding: 10 }}>
+        <Button
+          onClick={handleBuy}
+          variant="contained"
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
+        >
           Buy
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
+
+const useStyles = makeStyles({
+  overrides: {
+    "& label.Mui-focused": { color: "green" },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": { borderColor: "green" },
+    },
+  },
+});

@@ -1,16 +1,16 @@
-import { Coin } from ".";
-
 export interface User {
-  id: String;
+  _id: String;
   name: String;
   email: String;
   friends?: User[];
-  photourl?: String;
-  gameStats?: GameStats;
+  photoUrl?: String;
+  gameStats: GameStats;
 }
 
 export interface GameStats {
-  portfolio: { [key: string]: Portfolio };
+  portfolio: Map<string, Portfolio>;
+  portfolioValueYesterday: number;
+  lastRoundProfit: number;
   dailyProfit: number;
   totalProfit: number;
   roundProfit: number;
@@ -20,18 +20,28 @@ export interface Transaction {
   name: String;
   amount: number;
   price: number;
+  activity: String;
   date: number;
 }
 
-interface Portfolio {
+export interface Portfolio {
   name: String;
   amount: number;
 }
 
 export function emptyUser(): User {
   return {
-    id: "",
+    _id: "",
     name: "",
     email: "",
+    gameStats: {
+      portfolio: new Map(),
+      dailyProfit: 0,
+      lastRoundProfit: 0,
+      totalProfit: 0,
+      portfolioValueYesterday: 0,
+      roundProfit: 0,
+      recentTransactions: [],
+    },
   };
 }
