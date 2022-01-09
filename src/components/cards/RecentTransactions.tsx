@@ -29,7 +29,11 @@ export default function RecentTransactions() {
           <SummarizeIcon style={{ marginBottom: "-4px" }} /> Recent Transactions
         </Typography>
         <TableContainer>
-          <Table sx={{ minWidth: 650, marginTop: "10px" }} size="small" aria-label="a dense table">
+          <Table
+            sx={{ minWidth: 650, marginTop: "10px" }}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell
@@ -46,6 +50,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   recent Value
@@ -55,6 +60,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   Paid
@@ -64,6 +70,7 @@ export default function RecentTransactions() {
                     background: "#fff",
                     color: "#005249",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   Date
@@ -87,13 +94,21 @@ export default function RecentTransactions() {
                           color: "#fff",
                         }}
                       >
-                        <img style={{marginRight: "5px", marginBottom: "-7px"}} src={coin?.image} alt="Logo" />
-                        <span style={{marginTop: "3px"}}> {transaction.name}</span>
+                        <img
+                          style={{ marginRight: "5px", marginBottom: "-7px" }}
+                          src={coin?.image}
+                          alt="Logo"
+                        />
+                        <span style={{ marginTop: "3px" }}>
+                          {" "}
+                          {transaction.name}
+                        </span>
                       </TableCell>
                       <TableCell
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {transaction.price}
@@ -102,6 +117,7 @@ export default function RecentTransactions() {
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {transaction.amount}
@@ -110,6 +126,7 @@ export default function RecentTransactions() {
                         style={{
                           background: "#005249",
                           color: "#fff",
+                          textAlign: "center",
                         }}
                       >
                         {getDayAndTime(transaction.date)}
