@@ -1,8 +1,8 @@
 import { User as FirebaseUser } from "firebase/auth";
 import { emptyUser, User } from "../model";
 
-const url = "https://wt-backend-liimootbm.cloud.okteto.net";
-//const url = "http://localhost:8080";
+//const url = "https://wt-backend-liimootbm.cloud.okteto.net";
+const url = "http://localhost:8080";
 
 export async function postUser(user: FirebaseUser): Promise<User> {
   const User: User = emptyUser();
@@ -60,19 +60,13 @@ export async function checkFirebaseUserExists(id: String) {
 }
 
 export async function updateUser(user: User): Promise<User> {
-  const response = await fetch(url + "/users/" + user._id, {
+  const response = await fetch(url + "/users/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify({
-      name: user.name,
-      email: user.email,
-      photoUrl: user.photoUrl,
-      friends: user.friends,
-      gamestats: user.gameStats,
-    }),
+    body: JSON.stringify(user),
   });
   return response.json();
 }
