@@ -152,6 +152,7 @@ function getDayAndTime(timeStamp: number) {
 const useStyles = makeStyles({
   recentTransactions: {
     height: "100%",
+    overflow: "auto",
     background: "#24695c",
     boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "white",

@@ -12,7 +12,7 @@ export default function PageWrapper(props: React.PropsWithChildren<props>) {
         left: 240,
         width: "calc(100% - 240px)",
         height: "100%",
-        background : "#d7d4d4",
+        background: "#d7d4d4",
       }}
     >
       <LeftsideMenu />

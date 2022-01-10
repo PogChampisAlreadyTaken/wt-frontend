@@ -1,4 +1,4 @@
-import { Transaction } from "../model";
+import { Transaction, User } from "../model";
 import { Player } from "../model/player";
 
 export async function getAllPlayers() {
@@ -14,20 +14,25 @@ export async function getAllPlayers() {
   return rows;
 }
 
-export async function postTransaction(transaction: Transaction, id: String) {
-  /*const url = "https://wt-backend-liimootbm.cloud.okteto.net/transactions/add";
+export async function postTransaction(
+  transaction: Transaction,
+  id: String
+): Promise<User | null> {
+  const activity = transaction.activity;
+  const url = "https://wt-backend-liimootbm.cloud.okteto.net/game/" + activity;
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify(transaction),
+    body: JSON.stringify({
+      userId: id,
+      coinId: transaction.name,
+      amount: transaction.amount,
+    }),
   });
-  return await response.json();*/
-  console.log(transaction);
-  console.log(id);
-  return true;
+  return response.json();
 }
 
 const rows: Player[] = [

@@ -10,9 +10,12 @@ import { firebaseGoogleLogin } from "../firebase/firebase";
 import Lottie from "react-lottie-player";
 import { UserContext } from "../context/userContext";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useNavigate } from "react-router-dom";
+import { setUserHelper } from "../model";
 
 export function Login() {
   const [userContext, setUserContext] = React.useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,7 +78,7 @@ export function Login() {
             endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
             onClick={() => {
-              console.log("Hallooooo");
+              console.log("Not Implemented yet");
             }}
           >
             Sign In
@@ -91,10 +94,9 @@ export function Login() {
             fullWidth
             onClick={() => {
               firebaseGoogleLogin().then((user) => {
-                user.gameStats.portfolio = new Map(
-                  Object.entries(user.gameStats.portfolio)
-                );
+                const newUser = setUserHelper(user);
                 setUserContext(user);
+                navigate("/overview");
               });
             }}
           >
