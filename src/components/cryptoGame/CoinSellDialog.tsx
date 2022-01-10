@@ -34,20 +34,45 @@ export default function CoinSellDialog(props: Props) {
     onClose(!open);
   };
   const handleSell = () => {
-    postTransaction(
-      {
-        name: coin._id,
-        amount: amount,
-        activity: "sell",
-        price: coin.market_data.current_price,
-        date: Date.now(),
-      },
-      userContext?._id ?? "0"
-    ).then((user) => {
-      if (user !== null) {
-        setUserContext(setUserHelper(user));
-      }
-    });
+    const isDollar = coin._id === "usd";
+    if (!isDollar) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: amount,
+          activity: "sell",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext?._id ?? "0"
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
+  };
+
+  const handleSellAll = () => {
+    const fullAmount = userContext?.gameStats.portfolio.get(coin._id)?.amount;
+    const isDollar = coin._id === "usd";
+
+    if (fullAmount !== undefined && !isDollar) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: fullAmount,
+          activity: "sell",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext?._id ?? "0"
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
   };
 
   return (
@@ -71,7 +96,7 @@ export default function CoinSellDialog(props: Props) {
           onChange={(event: any) => {
             setAmount(event.target.value);
           }}
-          max={userContext?.gameStats.portfolio.get(coin.name)?.amount}
+          max={userContext?.gameStats.portfolio.get(coin._id)?.amount}
           aria-label="Default"
           valueLabelDisplay="auto"
           step={0.01}
@@ -115,7 +140,10 @@ export default function CoinSellDialog(props: Props) {
           Cancel
         </Button>
         <Button
-          onClick={handleSell}
+          onClick={() => {
+            handleSell();
+            handleClose();
+          }}
           variant="contained"
           style={{
             padding: 10,
@@ -124,6 +152,20 @@ export default function CoinSellDialog(props: Props) {
           }}
         >
           Sell
+        </Button>
+        <Button
+          onClick={() => {
+            handleSellAll();
+            handleClose();
+          }}
+          variant="contained"
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
+        >
+          Sell All
         </Button>
       </DialogActions>
     </Dialog>
