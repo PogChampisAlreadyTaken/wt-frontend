@@ -11,7 +11,7 @@ import {
   CryptoGame,
   GameRanking,
 } from "./pages";
-import { CoinList, User } from "./model";
+import { CoinList, emptyUser, User } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
 import { UserContext } from "./context/userContext";
@@ -22,47 +22,13 @@ function App() {
   const [coin, setCoin] = React.useState<CoinList>({ coins: [], timestamp: 0 });
   const [user, setUser] = React.useState<User>();
   const [allUsers, setAllUsers] = React.useState<User[]>([]);
+  const [userContext, setUserContext] = React.useContext(UserContext);
 
   React.useEffect(() => {
     if (coin.coins.length === 0) {
       getAllCoins().then((coins) => setCoin(coins));
     }
     getUsers().then(setAllUsers);
-    const user: User = {
-      _id: "1",
-      name: "Hanswurst",
-      email: "hans@flamme",
-      gameStats: {
-        portfolio: new Map(),
-        portfolioValueYesterday: 0,
-        lastRoundProfit: 0,
-        dailyProfit: 1,
-        totalProfit: 2,
-        roundProfit: 3,
-        recentTransactions: [],
-      },
-    };
-    user.gameStats.portfolio.set("usd", {
-      amount: 500000,
-      name: "USD",
-    });
-    user.gameStats.portfolio.set("Bitcoin", {
-      amount: 3,
-      name: "Bitcoin",
-    });
-    user.gameStats.portfolio.set("Ethereum", {
-      amount: 7,
-      name: "Ethereum",
-    });
-    const transaction = {
-      name: "Bitcoin",
-      amount: 255,
-      price: 432323,
-      activity: "Buy",
-      date: Date.now(),
-    };
-    user.gameStats?.recentTransactions.push(transaction);
-    setUser(user);
   }, []);
 
   return (
