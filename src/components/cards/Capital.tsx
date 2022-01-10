@@ -20,7 +20,7 @@ export default function CapitalCard() {
         <Typography variant="h3" component="h2" style={{ marginTop: "30px" }}>
           {"$" +
             userContext?.gameStats.portfolio
-              .get("USD")
+              .get("usd")
               ?.amount.toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </Typography>

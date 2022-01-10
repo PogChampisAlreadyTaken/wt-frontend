@@ -35,7 +35,7 @@ export function emptyUser(): User {
     name: "",
     email: "",
     gameStats: {
-      portfolio: new Map(),
+      portfolio: new Map([]),
       dailyProfit: 0,
       lastRoundProfit: 0,
       totalProfit: 0,
