@@ -53,7 +53,7 @@ export default function RecentTransactions() {
                     textAlign: "center",
                   }}
                 >
-                  recent Value
+                  Recent Value
                 </TableCell>
                 <TableCell
                   style={{
