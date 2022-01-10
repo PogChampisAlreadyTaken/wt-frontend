@@ -49,7 +49,7 @@ export default function FriendCard() {
   };
 
   return (
-    <Card className={classes.frindCard}>
+    <Card className={classes.friendCard}>
       <CardContent>
         <Typography variant="h5" component="h2">
           <PersonIcon style={{ marginBottom: "-4px" }} /> Friends
@@ -73,25 +73,34 @@ export default function FriendCard() {
                   bgcolor: "background.paper",
                 }}
               >
-                {allUsers?.map((user: User, index) => (
-                  <ListItem
-                    key={String(user?._id)}
-                    disableGutters
-                    secondaryAction={<IconButton></IconButton>}
-                  >
-                    <ListItemText primary={user.name} />
-                    <IconButton
-                      onClick={() => {
-                        const friends = userContext.friends ?? [];
-                        friends.push(user);
+                {allUsers?.map((user: User, index) => {
+                  const friend = userContext?.friends?.find(
+                    (friend: any) => friend === user._id
+                  );
+                  if (friend !== undefined) {
+                    return;
+                  }
 
-                        setUserContext({ ...userContext, friends: friends });
-                      }}
+                  return (
+                    <ListItem
+                      key={String(user?._id)}
+                      disableGutters
+                      secondaryAction={<IconButton></IconButton>}
                     >
-                      <AddIcon style={{ fill: "#24695c" }}></AddIcon>
-                    </IconButton>
-                  </ListItem>
-                ))}
+                      <ListItemText primary={user.name} />
+                      <IconButton
+                        onClick={() => {
+                          const friends = userContext.friends ?? [];
+                          friends.push(user._id);
+
+                          setUserContext({ ...userContext, friends: friends });
+                        }}
+                      >
+                        <AddIcon style={{ fill: "#24695c" }}></AddIcon>
+                      </IconButton>
+                    </ListItem>
+                  );
+                })}
               </List>
             </DialogContent>
             <DialogActions>
@@ -116,16 +125,19 @@ export default function FriendCard() {
             style={{ justifyContent: "center", display: "flex" }}
             sx={{ marginTop: 3 }}
           >
-            {userContext?.friends?.map((user: User) => (
-              <Avatar
-                key={String(user._id)}
-                alt={String(user?.name)}
-                src={String(user?.photoUrl)}
-                sx={{ width: 80, height: 80 }}
-              >
-                {user.name}
-              </Avatar>
-            ))}
+            {userContext?.friends?.map((user: any) => {
+              const friend = allUsers?.find((u) => u._id === user);
+              return (
+                <Avatar
+                  key={String(friend?._id)}
+                  alt={String(friend?.name)}
+                  src={String(friend?.photoUrl)}
+                  sx={{ width: 80, height: 80 }}
+                >
+                  {friend?.name}
+                </Avatar>
+              );
+            })}
           </AvatarGroup>
         </Button>
       </CardContent>
@@ -143,25 +155,29 @@ export default function FriendCard() {
               background: "#fff",
             }}
           >
-            {userContext?.friends?.map((user: User, index) => (
-              <ListItem
-                key={String(user?._id)}
-                disableGutters
-                secondaryAction={<IconButton></IconButton>}
-              >
-                <ListItemText primary={user.name} />
-                <IconButton
-                  onClick={() => {
-                    userContext.friends = userContext?.friends?.filter(
-                      (element) => element._id !== user._id
-                    );
-                    handleClose();
-                  }}
+            {userContext?.friends?.map((user: any, index) => {
+              const friend = allUsers?.find((u) => u._id === user);
+
+              return (
+                <ListItem
+                  key={String(friend?._id)}
+                  disableGutters
+                  secondaryAction={<IconButton></IconButton>}
                 >
-                  <DeleteIcon style={{ fill: "#24695c" }}></DeleteIcon>{" "}
-                </IconButton>
-              </ListItem>
-            ))}
+                  <ListItemText primary={friend?.name} />
+                  <IconButton
+                    onClick={() => {
+                      userContext.friends = userContext?.friends?.filter(
+                        (element: any) => element !== friend?._id
+                      );
+                      handleClose();
+                    }}
+                  >
+                    <DeleteIcon style={{ fill: "#24695c" }}></DeleteIcon>{" "}
+                  </IconButton>
+                </ListItem>
+              );
+            })}
           </List>
         </DialogContent>
         <DialogActions>
@@ -179,7 +195,7 @@ export default function FriendCard() {
 }
 
 const useStyles = makeStyles({
-  frindCard: {
+  friendCard: {
     height: "100%",
     background: "#24695c",
     boxShadow: "0 0 1px 0px rgb(0 0 0)",
