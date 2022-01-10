@@ -71,7 +71,7 @@ export default function CoinSellDialog(props: Props) {
           onChange={(event: any) => {
             setAmount(event.target.value);
           }}
-          max={userContext?.gameStats.portfolio.get(coin.name)?.amount}
+          max={userContext?.gameStats.portfolio.get(coin._id)?.amount}
           aria-label="Default"
           valueLabelDisplay="auto"
           step={0.01}
@@ -115,7 +115,10 @@ export default function CoinSellDialog(props: Props) {
           Cancel
         </Button>
         <Button
-          onClick={handleSell}
+          onClick={() => {
+            handleSell();
+            handleClose();
+          }}
           variant="contained"
           style={{
             padding: 10,
