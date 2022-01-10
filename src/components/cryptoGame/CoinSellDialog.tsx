@@ -34,25 +34,30 @@ export default function CoinSellDialog(props: Props) {
     onClose(!open);
   };
   const handleSell = () => {
-    postTransaction(
-      {
-        name: coin._id,
-        amount: amount,
-        activity: "sell",
-        price: coin.market_data.current_price,
-        date: Date.now(),
-      },
-      userContext?._id ?? "0"
-    ).then((user) => {
-      if (user !== null) {
-        setUserContext(setUserHelper(user));
-      }
-    });
+    const isDollar = coin._id === "usd";
+    if (!isDollar) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: amount,
+          activity: "sell",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext?._id ?? "0"
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
   };
 
   const handleSellAll = () => {
     const fullAmount = userContext?.gameStats.portfolio.get(coin._id)?.amount;
-    if (fullAmount !== undefined) {
+    const isDollar = coin._id === "usd";
+
+    if (fullAmount !== undefined && !isDollar) {
       postTransaction(
         {
           name: coin._id,
