@@ -42,7 +42,7 @@ function App() {
         recentTransactions: [],
       },
     };
-    user.gameStats.portfolio.set("USD", {
+    user.gameStats.portfolio.set("usd", {
       amount: 500000,
       name: "USD",
     });

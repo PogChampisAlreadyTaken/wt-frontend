@@ -111,7 +111,6 @@ export default function CoinBuyDialog(props: Props) {
               if (value > max) value = max;
               if (value < 0) value = 0;
               setUSD(value);
-              console.log(typeof USD);
             }}
             InputLabelProps={{
               shrink: true,

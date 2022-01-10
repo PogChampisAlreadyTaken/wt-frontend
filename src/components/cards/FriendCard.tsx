@@ -35,7 +35,6 @@ export default function FriendCard() {
   React.useEffect(() => {}, [userContext]);
 
   if (userContext === undefined) {
-    console.log("hi");
     return null;
   }
 
@@ -83,7 +82,10 @@ export default function FriendCard() {
                     <ListItemText primary={user.name} />
                     <IconButton
                       onClick={() => {
-                        userContext?.friends?.push(user);
+                        const friends = userContext.friends ?? [];
+                        friends.push(user);
+
+                        setUserContext({ ...userContext, friends: friends });
                       }}
                     >
                       <AddIcon style={{ fill: "#24695c" }}></AddIcon>
