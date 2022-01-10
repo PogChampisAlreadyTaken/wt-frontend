@@ -12,15 +12,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 import { Player } from "../../model/player";
 import { getAllPlayers } from "../../request/gameService";
+import { AllUserContext } from "../../context/allUserContext";
 
 export function PlayerRanking() {
+  const [allUsers, setAllUsers] = React.useContext(AllUserContext);
   const classes = useStyles();
-  const [player, setPlayer] = React.useState<Player[]>([]);
-  React.useEffect(() => {
-    getAllPlayers().then((res) => {
-      setPlayer(res);
-    });
-  }, []);
+
   return (
     <div>
       <Typography variant="h5">Player Overall Ranking</Typography>
@@ -40,7 +37,7 @@ export function PlayerRanking() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {player.map((row) => (
+            {allUsers?.map((row) => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}

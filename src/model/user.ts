@@ -1,8 +1,8 @@
 export interface User {
   _id: String;
-  name: String;
+  name: string;
   email: String;
-  friends?: User[];
+  friends?: (User | String)[];
   photoUrl?: String;
   gameStats: GameStats;
 }
@@ -27,6 +27,11 @@ export interface Transaction {
 export interface Portfolio {
   name: String;
   amount: number;
+}
+
+export function setUserHelper(user: User) {
+  user.gameStats.portfolio = new Map(Object.entries(user.gameStats.portfolio));
+  return user;
 }
 
 export function emptyUser(): User {

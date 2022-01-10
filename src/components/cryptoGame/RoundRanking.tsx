@@ -8,19 +8,14 @@ import {
   Card,
 } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-
 import * as React from "react";
 import { Player } from "../../model/player";
+import { AllUserContext } from "../../context/allUserContext";
 import { getAllPlayers } from "../../request/gameService";
 
 export function RoundRanking() {
+  const [allUsers, setAllUsers] = React.useContext(AllUserContext);
   const classes = useStyles();
-  const [player, setPlayer] = React.useState<Player[]>([]);
-  React.useEffect(() => {
-    getAllPlayers().then((res) => {
-      setPlayer(res);
-    });
-  }, []);
   return (
     <div>
       <Typography variant="h5">Player Round Ranking</Typography>
@@ -40,7 +35,7 @@ export function RoundRanking() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {player.map((row) => (
+            {allUsers?.map((row) => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}

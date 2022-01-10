@@ -10,9 +10,10 @@ import {
 
 import Button from "@mui/material/Button";
 import * as React from "react";
-import { Coin, emptyUser } from "../../model";
+import { Coin, emptyUser, setUserHelper } from "../../model";
 import { postTransaction } from "../../request/gameService";
 import { makeStyles } from "@material-ui/core/styles";
+import { UserContext } from "../../context/userContext";
 
 interface Props {
   onClose: (open: boolean) => void;
@@ -21,40 +22,43 @@ interface Props {
 }
 
 export default function CoinBuyDialog(props: Props) {
+  const classes = useStyles();
   const { onClose, open, coin } = props;
   const [USD, setUSD] = React.useState<number>(0.0);
   const [currentCoin, setCurrentCoin] = React.useState(0.0);
-  const [user, setUser] = React.useState(emptyUser());
-  const classes = useStyles();
-  user.gameStats = {
-    portfolio: new Map(),
-    portfolioValueYesterday: 0,
-    lastRoundProfit: 0,
-    dailyProfit: 1,
-    totalProfit: 2,
-    roundProfit: 3,
-    recentTransactions: [],
-  };
+  const [userContext, setUserContext] = React.useContext(UserContext);
+
   const [max, setMax] = React.useState(
-    user.gameStats.portfolio.get("USD")?.amount ?? 100
+    userContext?.gameStats.portfolio.get("usd")?.amount ?? 100
   );
-  if (coin === undefined) {
+  React.useEffect(() => {
+    setMax(userContext?.gameStats.portfolio.get("usd")?.amount ?? 100);
+  }, [userContext]);
+
+  if (coin === undefined || userContext === undefined) {
     return null;
   }
+
   const handleClose = () => {
     onClose(!open);
   };
   const handleBuy = () => {
+    console.log(currentCoin);
     postTransaction(
       {
-        name: coin.name,
-        amount: USD,
-        activity: "Buy",
+        name: coin._id,
+        amount: USD / coin.market_data.current_price,
+        activity: "buy",
         price: coin.market_data.current_price,
         date: Date.now(),
       },
-      user._id
-    );
+      userContext._id
+    ).then((user) => {
+      if (user !== null) {
+        setUserContext(setUserHelper(user));
+      }
+    });
+    handleClose();
   };
 
   if (coin === undefined) {
@@ -81,7 +85,7 @@ export default function CoinBuyDialog(props: Props) {
           onChange={(event: any) => {
             setUSD(event.target.value);
           }}
-          max={user.gameStats.portfolio.get("USD")?.amount}
+          max={max}
           aria-label="Default"
           valueLabelDisplay="auto"
         />
@@ -103,7 +107,7 @@ export default function CoinBuyDialog(props: Props) {
             value={USD}
             inputProps={{
               min: 0,
-              max: user.gameStats.portfolio.get("USD")?.amount,
+              max: userContext.gameStats.portfolio.get("USD")?.amount,
             }}
             onChange={(event: any) => {
               var value = parseInt(event.target.value, 10);

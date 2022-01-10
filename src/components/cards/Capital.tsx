@@ -10,7 +10,7 @@ import { UserContext } from "../../context/userContext";
 export default function CapitalCard() {
   const classes = useStyles();
   const [userContext, setUserContext] = React.useContext(UserContext);
-
+  const amount = userContext?.gameStats.portfolio.get("usd")?.amount ?? 0;
   return (
     <Card className={classes.capitalcard}>
       <CardContent>
@@ -18,11 +18,7 @@ export default function CapitalCard() {
           <AccountBalanceWalletIcon style={{ marginBottom: "-4px" }} /> Capital
         </Typography>
         <Typography variant="h3" component="h2" style={{ marginTop: "30px" }}>
-          {"$" +
-            userContext?.gameStats.portfolio
-              .get("usd")
-              ?.amount.toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          {"$" + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </Typography>
       </CardContent>
       <CardActions></CardActions>

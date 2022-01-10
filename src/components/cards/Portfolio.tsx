@@ -118,7 +118,7 @@ export default function PortfolioCard() {
             <TableBody>
               {getRecords().map((portfolio, index) => {
                 const coin = coinContext.coins.find(
-                  (coin) => coin.name === portfolio.name
+                  (coin) => coin._id === portfolio.name
                 );
                 return (
                   <TableRow key={index}>
@@ -224,6 +224,7 @@ const useStyles = makeStyles({
   portfolio: {
     height: "100%",
     background: "#24695c",
+    overflow: "auto",
     boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "white",
   },

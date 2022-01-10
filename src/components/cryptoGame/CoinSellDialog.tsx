@@ -10,7 +10,7 @@ import {
 
 import Button from "@mui/material/Button";
 import * as React from "react";
-import { Coin } from "../../model";
+import { Coin, setUserHelper } from "../../model";
 import { postTransaction } from "../../request/gameService";
 import { makeStyles } from "@material-ui/core/styles";
 import { UserContext } from "../../context/userContext";
@@ -36,14 +36,18 @@ export default function CoinSellDialog(props: Props) {
   const handleSell = () => {
     postTransaction(
       {
-        name: coin.name,
+        name: coin._id,
         amount: amount,
-        activity: "Sell",
+        activity: "sell",
         price: coin.market_data.current_price,
         date: Date.now(),
       },
       userContext?._id ?? "0"
-    );
+    ).then((user) => {
+      if (user !== null) {
+        setUserContext(setUserHelper(user));
+      }
+    });
   };
 
   return (
