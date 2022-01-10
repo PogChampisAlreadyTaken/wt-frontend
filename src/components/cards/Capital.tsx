@@ -18,7 +18,11 @@ export default function CapitalCard() {
           <AccountBalanceWalletIcon style={{ marginBottom: "-4px" }} /> Capital
         </Typography>
         <Typography variant="h3" component="h2" style={{ marginTop: "30px" }}>
-          {"$" + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          {"$" +
+            amount
+              .toFixed(2)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </Typography>
       </CardContent>
       <CardActions></CardActions>

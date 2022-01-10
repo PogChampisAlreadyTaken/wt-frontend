@@ -50,6 +50,26 @@ export default function CoinSellDialog(props: Props) {
     });
   };
 
+  const handleSellAll = () => {
+    const fullAmount = userContext?.gameStats.portfolio.get(coin._id)?.amount;
+    if (fullAmount !== undefined) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: fullAmount,
+          activity: "sell",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext?._id ?? "0"
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
+  };
+
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle
@@ -127,6 +147,20 @@ export default function CoinSellDialog(props: Props) {
           }}
         >
           Sell
+        </Button>
+        <Button
+          onClick={() => {
+            handleSellAll();
+            handleClose();
+          }}
+          variant="contained"
+          style={{
+            padding: 10,
+            background: "#005249",
+            color: "#fff",
+          }}
+        >
+          Sell All
         </Button>
       </DialogActions>
     </Dialog>
