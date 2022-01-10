@@ -24,25 +24,43 @@ export function Overview(props: Props) {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Grid container direction="row" spacing={2} className={classes.rootGrid}>
-        <Grid container spacing={1} className={classes.upperGrid}>
-          <Grid item container direction="row" xs={12} spacing={1}>
-            <Grid item container direction="column" xs={8} spacing={1}>
-              <Grid item container direction="row" xs={4} spacing={1}>
-                <Grid item xs={4}>
-                  <CapitalCard />
-                </Grid>
-                <Grid item xs={8}>
-                  <FriendCard />
-                </Grid>
+      <div className={classes.rootGrid}>
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          className={classes.upperGrid}
+        >
+          <Grid
+            item
+            container
+            direction="column"
+            xs={8}
+            spacing={1}
+            style={{ height: "100%" }}
+          >
+            <Grid
+              item
+              container
+              direction="row"
+              xs={4}
+              spacing={1}
+              style={{ height: "100%" }}
+            >
+              <Grid item xs={4}>
+                <CapitalCard />
               </Grid>
               <Grid item xs={8}>
-                <PortfolioCard />
+                <FriendCard />
               </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <PortfolioSum />
+
+            <Grid item xs={8} style={{ height: "100%", overflow: "auto" }}>
+              <PortfolioCard />
             </Grid>
+          </Grid>
+          <Grid item xs={4}>
+            <PortfolioSum />
           </Grid>
         </Grid>
         <Grid
@@ -51,14 +69,14 @@ export function Overview(props: Props) {
           spacing={1}
           className={classes.lowerGrid}
         >
-          <Grid item xs={8}>
+          <Grid item xs={8} style={{ height: "100%", overflow: "auto" }}>
             <RecentTransactions />
           </Grid>
           <Grid item xs={4}>
             <Ranking />
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     </Box>
   );
 }
@@ -72,7 +90,7 @@ const useStyles = makeStyles({
     height: "calc(100% - 8px)",
     width: "100%",
     margin: "0px",
-    paddingRight: "8px",
+    paddingRight: "16px",
     paddingBottom: "8px",
   },
   upperGrid: {
