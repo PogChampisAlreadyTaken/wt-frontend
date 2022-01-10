@@ -90,7 +90,12 @@ export function Login() {
             variant="contained"
             fullWidth
             onClick={() => {
-              firebaseGoogleLogin().then((user) => setUserContext(user));
+              firebaseGoogleLogin().then((user) => {
+                user.gameStats.portfolio = new Map(
+                  Object.entries(user.gameStats.portfolio)
+                );
+                setUserContext(user);
+              });
             }}
           >
             <GoogleIcon
