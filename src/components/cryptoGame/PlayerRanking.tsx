@@ -10,8 +10,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import * as React from "react";
-import { Player } from "../../model/player";
-import { getAllPlayers } from "../../request/gameService";
 import { AllUserContext } from "../../context/allUserContext";
 
 export function PlayerRanking() {
