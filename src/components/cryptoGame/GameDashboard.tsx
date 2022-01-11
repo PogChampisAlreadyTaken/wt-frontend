@@ -18,13 +18,19 @@ export function GameDashboard() {
   return (
     <Grid container direction="column" spacing={2}>
       <Grid item xs={12}>
-        <CapitalCard />
+        <div style={{height: "150px"}}>
+        <CapitalCard />  
+        </div>
       </Grid>
       <Grid item xs={12}>
-        <PortfolioCard />
+        <div style={{height: "400px", marginTop: "-10px", marginBottom: "-10px" }}>
+          <PortfolioCard />
+        </div>
       </Grid>
       <Grid item xs={12}>
-        <RecentTransactions />
+        <div style={{height: "305px"}}>
+          <RecentTransactions />
+        </div>
       </Grid>
     </Grid>
   );
