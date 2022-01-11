@@ -37,7 +37,6 @@ export function Overview(props: Props) {
             direction="column"
             xs={8}
             spacing={1}
-            style={{ height: "100%" }}
           >
             <Grid
               item
