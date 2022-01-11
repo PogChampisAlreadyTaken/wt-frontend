@@ -14,6 +14,7 @@ export interface GameStats {
   dailyProfit: number;
   totalProfit: number;
   roundProfit: number;
+  history: [[Number, Number]];
   recentTransactions: Transaction[];
 }
 export interface Transaction {
@@ -29,24 +30,24 @@ export interface Portfolio {
   amount: number;
 }
 
-export function setUserHelper(user: User) {
-  user.gameStats.portfolio = new Map(Object.entries(user.gameStats.portfolio));
-  return user;
-}
-
 export function emptyUser(): User {
   return {
     _id: "",
     name: "",
     email: "",
     gameStats: {
-      portfolio: new Map([]),
+      portfolio: new Map(),
       dailyProfit: 0,
       lastRoundProfit: 0,
       totalProfit: 0,
       portfolioValueYesterday: 0,
       roundProfit: 0,
       recentTransactions: [],
+      history: [[0, 0]],
     },
   };
+}
+export function setUserHelper(user: User) {
+  user.gameStats.portfolio = new Map(Object.entries(user.gameStats.portfolio));
+  return user;
 }

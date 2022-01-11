@@ -10,10 +10,12 @@ import {
 
 import { Button } from "@material-ui/core";
 import * as React from "react";
-import { Coin, setUserHelper } from "../../model";
+import { Coin, setUserHelper, checkData } from "../../model";
 import { postTransaction } from "../../request/gameService";
 import { makeStyles } from "@material-ui/core/styles";
 import { UserContext } from "../../context/userContext";
+import { CoinContext } from "../../context/coinContext";
+import { getAllCoins } from "../../request/coinService";
 
 interface Props {
   onClose: (open: boolean) => void;
@@ -26,6 +28,13 @@ export default function CoinSellDialog(props: Props) {
   const [amount, setAmount] = React.useState<number>(0.0);
   const [userContext, setUserContext] = React.useContext(UserContext);
   const classes = useStyles();
+  const [coinContext, setCoinContext] = React.useContext(CoinContext);
+
+  React.useEffect(() => {
+    if (checkData(coinContext)) {
+      getAllCoins().then((coins) => setCoinContext(coins));
+    }
+  }, []);
 
   if (coin === undefined) {
     return null;

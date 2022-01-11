@@ -10,10 +10,13 @@ import {
 
 import { Button } from "@material-ui/core";
 import * as React from "react";
-import { Coin, emptyUser, setUserHelper } from "../../model";
+import { checkData, Coin, emptyUser, setUserHelper } from "../../model";
 import { postTransaction } from "../../request/gameService";
 import { makeStyles } from "@material-ui/core/styles";
 import { UserContext } from "../../context/userContext";
+
+import { CoinContext } from "../../context/coinContext";
+import { getAllCoins } from "../../request/coinService";
 
 interface Props {
   onClose: (open: boolean) => void;
@@ -27,6 +30,13 @@ export default function CoinBuyDialog(props: Props) {
   const [USD, setUSD] = React.useState<number>(0.0);
   const [currentCoin, setCurrentCoin] = React.useState(0.0);
   const [userContext, setUserContext] = React.useContext(UserContext);
+  const [coinContext, setCoinContext] = React.useContext(CoinContext);
+
+  React.useEffect(() => {
+    if (checkData(coinContext)) {
+      getAllCoins().then((coins) => setCoinContext(coins));
+    }
+  }, []);
 
   const [max, setMax] = React.useState(
     userContext?.gameStats.portfolio.get("usd")?.amount ?? 100

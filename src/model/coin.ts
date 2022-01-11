@@ -26,8 +26,6 @@ export function checkData(coinList: CoinList) {
   if (new Date(timestamp).getDate() - Date.now() > 1000 * 60) {
     return true;
   }
-  const data = coins.map((coin) => {
-    return coin === null || coin === undefined;
-  });
-  return data;
+
+  return false;
 }
