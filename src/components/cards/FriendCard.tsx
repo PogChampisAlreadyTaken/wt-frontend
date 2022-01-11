@@ -35,7 +35,7 @@ export default function FriendCard() {
 
   React.useEffect(() => {}, [userContext]);
 
-  if (userContext === undefined) {
+  if (userContext === null) {
     return null;
   }
 

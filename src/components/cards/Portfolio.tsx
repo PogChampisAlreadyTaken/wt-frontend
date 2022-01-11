@@ -30,7 +30,7 @@ export default function PortfolioCard() {
   const [coinForSell, setCoinForSell] = React.useState<Coin>();
   const [coinForBuy, setCoinForBuy] = React.useState<Coin>();
 
-  if (userContext === undefined) {
+  if (userContext === null) {
     return null;
   }
 

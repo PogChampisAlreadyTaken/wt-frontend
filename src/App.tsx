@@ -17,13 +17,14 @@ import { getAllCoins } from "./request/coinService";
 import { UserContext } from "./context/userContext";
 import { AllUserContext } from "./context/allUserContext";
 import { getUsers } from "./request/userService";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import RecentTransactions from "./components/cards/RecentTransactions";
+
 
 function App() {
   const [coin, setCoin] = React.useState<CoinList>({ coins: [], timestamp: 0 });
-  const [user, setUser] = React.useState<User>();
+  const [user, setUser] = useLocalStorage<User | null>("user", null)
   const [allUsers, setAllUsers] = React.useState<User[]>([]);
-  const [userContext, setUserContext] = React.useContext(UserContext);
 
   React.useEffect(() => {
     if (coin.coins.length === 0) {
