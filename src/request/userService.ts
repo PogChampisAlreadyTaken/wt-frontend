@@ -1,8 +1,6 @@
 import { User as FirebaseUser } from "firebase/auth";
 import { emptyUser, User } from "../model";
-
-const url = "https://wt-backend-liimootbm.cloud.okteto.net";
-//const url = "http://localhost:8080";
+import { url } from "./endpoints";
 
 export async function postUser(user: FirebaseUser): Promise<User> {
   const User: User = emptyUser();

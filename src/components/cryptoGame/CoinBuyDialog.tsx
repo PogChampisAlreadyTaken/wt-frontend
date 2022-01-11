@@ -44,20 +44,24 @@ export default function CoinBuyDialog(props: Props) {
   };
   const handleBuy = () => {
     console.log(currentCoin);
-    postTransaction(
-      {
-        name: coin._id,
-        amount: USD / coin.market_data.current_price,
-        activity: "buy",
-        price: coin.market_data.current_price,
-        date: Date.now(),
-      },
-      userContext._id
-    ).then((user) => {
-      if (user !== null) {
-        setUserContext(setUserHelper(user));
-      }
-    });
+    const isDollar = coin._id === "usd";
+
+    if (!isDollar) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: USD / coin.market_data.current_price,
+          activity: "buy",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext._id
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
     handleClose();
   };
 
