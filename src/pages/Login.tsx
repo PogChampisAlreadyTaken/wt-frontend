@@ -12,10 +12,12 @@ import { UserContext } from "../context/userContext";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import { setUserHelper } from "../model";
+import { makeStyles } from "@material-ui/core/styles";
 
 export function Login() {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const navigate = useNavigate();
+  const classes = useStyles();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,6 +49,7 @@ export function Login() {
 
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
+            className={classes.overrides}
             margin="normal"
             required
             fullWidth={true}
@@ -57,6 +60,7 @@ export function Login() {
             autoComplete="new-password"
           />
           <TextField
+            className={classes.overrides}
             margin="normal"
             required
             fullWidth
@@ -75,7 +79,6 @@ export function Login() {
             }}
             variant="contained"
             fullWidth
-            endIcon={<SendIcon style={{ fill: "#6157f4" }} />}
             color="primary"
             onClick={() => {
               console.log("Not Implemented yet");
@@ -110,3 +113,12 @@ export function Login() {
     </Container>
   );
 }
+
+const useStyles = makeStyles({
+  overrides: {
+    "& label.Mui-focused": { color: "green" },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": { borderColor: "green" },
+    },
+  },
+});
