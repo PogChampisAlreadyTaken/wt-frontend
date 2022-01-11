@@ -15,6 +15,7 @@ import animationData from "../components/animations/crypto-logo.json";
 import Lottie from "react-lottie-player";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import { Button } from "@mui/material";
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
@@ -63,20 +64,33 @@ export default function LeftsideMenu() {
           style={{
             background: "#fff",
             color: "#24695c",
+            justifyContent: "space-between",
           }}
         >
-          <div style={{ width: drawerWidth - 48, marginRight: 24 }}>
-            <Lottie
-              loop
-              animationData={animationData}
-              play
-              style={{ width: 45, height: 45, margin: "auto" }}
-            />
+          <div style={{display: "flex"}}>
+            <div style={{ width: drawerWidth - 48, marginRight: 24 }}>
+              <Lottie
+                loop
+                animationData={animationData}
+                play
+                style={{ width: 45, height: 45, margin: "auto" }}
+              />
+            </div>
+            <Typography variant="h6" noWrap component="div" style={{margin: "auto"}}>
+              Crypto Trading Game
+            </Typography>
           </div>
-
-          <Typography variant="h6" noWrap component="div">
-            Crypto Trading Game
-          </Typography>
+          <Button
+            variant="outlined"
+            style={{
+              background: "#005249",
+              color: "#fff",
+              marginLeft: 10,
+              alignSelf: "right",
+            }}
+          >
+            Test
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
