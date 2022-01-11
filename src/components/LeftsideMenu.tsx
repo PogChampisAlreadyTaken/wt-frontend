@@ -16,9 +16,15 @@ import Lottie from "react-lottie-player";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Button } from "@mui/material";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { User } from "../model";
+import { idText } from "typescript";
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
+  const [user, setUser] = useLocalStorage<User | null>("user", null);
+  const [allUsers, setAllUsers] = useLocalStorage<User[] | null>("users", []);
+
   const navigate = useNavigate();
   let isLogedIn = true;
   const itemsList = [
@@ -67,7 +73,7 @@ export default function LeftsideMenu() {
             justifyContent: "space-between",
           }}
         >
-          <div style={{display: "flex"}}>
+          <div style={{ display: "flex" }}>
             <div style={{ width: drawerWidth - 48, marginRight: 24 }}>
               <Lottie
                 loop
@@ -76,21 +82,35 @@ export default function LeftsideMenu() {
                 style={{ width: 45, height: 45, margin: "auto" }}
               />
             </div>
-            <Typography variant="h6" noWrap component="div" style={{margin: "auto"}}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              style={{ margin: "auto" }}
+            >
               Crypto Trading Game
             </Typography>
           </div>
-          <Button
-            variant="outlined"
-            style={{
-              background: "#005249",
-              color: "#fff",
-              marginLeft: 10,
-              alignSelf: "right",
-            }}
-          >
-            Test
-          </Button>
+          <div>
+            <Button
+              variant="outlined"
+              style={{
+                background: "#005249",
+                color: "#fff",
+                marginLeft: 10,
+                alignSelf: "right",
+                
+              }}
+              onClick={() => {
+                setUser(null);
+                setAllUsers(null);
+
+                navigate("/");
+              }}
+            >
+              Sign Out
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
