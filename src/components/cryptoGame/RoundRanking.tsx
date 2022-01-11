@@ -9,9 +9,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import { Player } from "../../model/player";
 import { AllUserContext } from "../../context/allUserContext";
-import { getAllPlayers } from "../../request/gameService";
 
 export function RoundRanking() {
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
