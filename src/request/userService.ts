@@ -1,5 +1,6 @@
 import { User as FirebaseUser } from "firebase/auth";
 import { emptyUser, User } from "../model";
+import { replacer } from "../utils";
 import { url } from "./endpoints";
 
 export async function postUser(user: FirebaseUser): Promise<User> {
@@ -14,7 +15,7 @@ export async function postUser(user: FirebaseUser): Promise<User> {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify(User),
+    body: JSON.stringify(User, replacer),
   });
   return response.json();
 }
@@ -64,7 +65,7 @@ export async function updateUser(user: User): Promise<User> {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify(user, replacer),
   });
   return response.json();
 }

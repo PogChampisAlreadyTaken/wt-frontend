@@ -11,30 +11,36 @@ import {
   CryptoGame,
   GameRanking,
 } from "./pages";
-import { CoinList, emptyUser, User } from "./model";
+import { checkData, CoinList, emptyUser, User } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
 import { UserContext } from "./context/userContext";
 import { AllUserContext } from "./context/allUserContext";
 import { getUsers } from "./request/userService";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import RecentTransactions from "./components/cards/RecentTransactions";
 
 function App() {
-  const [coin, setCoin] = React.useState<CoinList>({ coins: [], timestamp: 0 });
-  const [user, setUser] = React.useState<User>();
-  const [allUsers, setAllUsers] = React.useState<User[]>([]);
-  const [userContext, setUserContext] = React.useContext(UserContext);
+  const [coins, setCoins] = React.useState<CoinList>({
+    coins: [],
+    timestamp: 0,
+  });
+  const [user, setUser] = useLocalStorage<User | null>("user", null);
+  const [allUsers, setAllUsers] = useLocalStorage<User[]>("users", []);
 
   React.useEffect(() => {
-    if (coin.coins.length === 0) {
-      getAllCoins().then((coins) => setCoin(coins));
+    console.log(checkData(coins));
+    if (checkData(coins)) {
+      getAllCoins().then((coins) => setCoins(coins));
     }
     getUsers().then(setAllUsers);
   }, []);
 
+  React.useEffect(() => {}, []);
+
   return (
     <div className="App">
-      <CoinContext.Provider value={[coin, setCoin]}>
+      <CoinContext.Provider value={[coins, setCoins]}>
         <UserContext.Provider value={[user, setUser]}>
           <AllUserContext.Provider value={[allUsers, setAllUsers]}>
             <BrowserRouter>
