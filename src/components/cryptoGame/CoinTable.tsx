@@ -25,12 +25,6 @@ export function CoinTable() {
     undefined
   );
 
-  React.useEffect(() => {
-    if (checkData(coinContext)) {
-      getAllCoins().then((coins) => setCoinContext(coins));
-    }
-  }, []);
-
   return (
     <div className={classes.coinTable}>
       <CoinBuyDialog onClose={setOpen} open={open} coin={currentCoin} />
@@ -119,7 +113,7 @@ export function CoinTable() {
                         setCurrentCoin(row);
                       }}
                     >
-                      <AddBoxIcon style={{fill: "#005249"}} />
+                      <AddBoxIcon style={{ fill: "#005249" }} />
                     </IconButton>
                   </TableCell>
                 </TableRow>

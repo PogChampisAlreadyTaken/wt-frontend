@@ -16,11 +16,10 @@ export function Overview(props: Props) {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const nav = useNavigate();
 
-
   if (userContext === null) {
     nav("/");
   }
-  
+
   const classes = useStyles();
   return (
     <Box className={classes.root}>

@@ -97,8 +97,7 @@ export function Login() {
             fullWidth
             onClick={() => {
               firebaseGoogleLogin().then((user) => {
-                const newUser = setUserHelper(user);
-                setUserContext(newUser);
+                setUserContext(setUserHelper(user));
                 navigate("/overview");
               });
             }}

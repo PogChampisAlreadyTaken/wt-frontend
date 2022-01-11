@@ -21,7 +21,7 @@ import {
 
 import AddIcon from "@mui/icons-material/Add";
 import { UserContext } from "../../context/userContext";
-import { User } from "../../model";
+import { setUserHelper, User } from "../../model";
 import { updateUser } from "../../request/userService";
 import { AllUserContext } from "../../context/allUserContext";
 import { Button } from "@material-ui/core";
@@ -46,7 +46,9 @@ export default function FriendCard() {
   const handleClose = () => {
     setOpen(false);
     setOpenAllFriends(false);
-    updateUser(userContext);
+    updateUser(userContext).then((user) => {
+      setUserContext(setUserHelper(user));
+    });
   };
 
   return (
@@ -57,7 +59,7 @@ export default function FriendCard() {
           <Button
             variant="outlined"
             onClick={handleClickOpen}
-            style={{  background: "#005249", color: "#fff", marginLeft: 10 }}
+            style={{ background: "#005249", color: "#fff", marginLeft: 10 }}
           >
             <Typography />
             Add a Friend
