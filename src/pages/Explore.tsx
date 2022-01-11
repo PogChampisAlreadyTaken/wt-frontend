@@ -42,8 +42,8 @@ export const options = {
 export function Explore() {
   const classes = useStyles();
   const [coinContext, setCoinContext] = React.useContext(CoinContext);
-  const [openChartDialog, setOpenChartDialog] = React.useState(true);
-  const [coinForChart] = React.useState<Coin>();
+  const [openChartDialog, setOpenChartDialog] = React.useState(false);
+  const [coinForChart, setCoinForChart] = React.useState<Coin>();
 
   React.useEffect(() => {
     if (checkData(coinContext)) {
@@ -90,6 +90,12 @@ export function Explore() {
               >
                 Chart
               </TableCell>
+              <TableCell
+                style={{ color: "#fff", fontWeight: "bold" }}
+                align="center"
+              >
+                Detailt Chart
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -100,6 +106,11 @@ export function Explore() {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
+                    <img
+                      style={{ marginRight: "5px", marginBottom: "-5px" }}
+                      src={row.image}
+                      alt="Logo"
+                    />
                     {row.name}
                   </TableCell>
                   <TableCell align="center">
@@ -129,13 +140,15 @@ export function Explore() {
                       options={options}
                     />
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="center">
                     <Button
+                      style={{ background: "#005249", color: "#fff" }}
                       onClick={() => {
                         setOpenChartDialog(!openChartDialog);
+                        setCoinForChart(row);
                       }}
                     >
-                      text
+                      Detail
                     </Button>
                   </TableCell>
                 </TableRow>

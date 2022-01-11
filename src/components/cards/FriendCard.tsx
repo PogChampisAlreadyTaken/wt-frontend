@@ -9,7 +9,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Avatar,
   AvatarGroup,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -19,11 +18,13 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+
 import AddIcon from "@mui/icons-material/Add";
 import { UserContext } from "../../context/userContext";
 import { User } from "../../model";
 import { updateUser } from "../../request/userService";
 import { AllUserContext } from "../../context/allUserContext";
+import { Button } from "@material-ui/core";
 
 export default function FriendCard() {
   const classes = useStyles();
@@ -56,7 +57,7 @@ export default function FriendCard() {
           <Button
             variant="outlined"
             onClick={handleClickOpen}
-            style={{ marginLeft: 10 }}
+            style={{  background: "#005249", color: "#fff", marginLeft: 10 }}
           >
             <Typography />
             Add a Friend

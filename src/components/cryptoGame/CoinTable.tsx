@@ -119,7 +119,7 @@ export function CoinTable() {
                         setCurrentCoin(row);
                       }}
                     >
-                      <AddBoxIcon />
+                      <AddBoxIcon style={{fill: "#005249"}} />
                     </IconButton>
                   </TableCell>
                 </TableRow>

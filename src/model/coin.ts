@@ -10,7 +10,7 @@ interface MarketData {
   market_cap: number;
   market_cap_rank: number;
   price_change_percentage_7d: number;
-  history: [number, number];
+  history: [[number, number]];
 }
 
 export interface CoinList {
