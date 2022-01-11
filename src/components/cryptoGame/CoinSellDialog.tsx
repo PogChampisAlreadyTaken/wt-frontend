@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import Button from "@mui/material/Button";
+import { Button } from "@material-ui/core";
 import * as React from "react";
 import { Coin, setUserHelper } from "../../model";
 import { postTransaction } from "../../request/gameService";
@@ -147,7 +147,7 @@ export default function CoinSellDialog(props: Props) {
           variant="contained"
           style={{
             padding: 10,
-            background: "#005249",
+            background: "#b10101",
             color: "#fff",
           }}
         >
