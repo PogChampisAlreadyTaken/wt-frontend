@@ -95,7 +95,7 @@ export function Login() {
             onClick={() => {
               firebaseGoogleLogin().then((user) => {
                 const newUser = setUserHelper(user);
-                setUserContext(user);
+                setUserContext(newUser);
                 navigate("/overview");
               });
             }}

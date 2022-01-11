@@ -14,13 +14,13 @@ import { UserContext } from "../context/userContext";
 type Props = {};
 export function Overview(props: Props) {
   const [userContext, setUserContext] = React.useContext(UserContext);
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
-  React.useEffect(() => {
-    if (userContext === undefined) {
-      navigate("/");
-    }
-  }, [userContext]);
+
+  if (userContext === null) {
+    nav("/");
+  }
+  
   const classes = useStyles();
   return (
     <Box className={classes.root}>

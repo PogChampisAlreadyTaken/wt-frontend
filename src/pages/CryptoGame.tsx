@@ -7,7 +7,7 @@ import { UserContext } from "../context/userContext";
 export function CryptoGame() {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const nav = useNavigate();
-  if (userContext === undefined) {
+  if (userContext === null) {
     nav("/");
   }
 

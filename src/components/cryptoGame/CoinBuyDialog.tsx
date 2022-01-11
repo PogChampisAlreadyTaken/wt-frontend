@@ -35,7 +35,7 @@ export default function CoinBuyDialog(props: Props) {
     setMax(userContext?.gameStats.portfolio.get("usd")?.amount ?? 100);
   }, [userContext]);
 
-  if (coin === undefined || userContext === undefined) {
+  if (coin === undefined || userContext === null) {
     return null;
   }
 
