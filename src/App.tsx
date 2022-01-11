@@ -18,6 +18,8 @@ import { UserContext } from "./context/userContext";
 import { AllUserContext } from "./context/allUserContext";
 import { getUsers } from "./request/userService";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import RecentTransactions from "./components/cards/RecentTransactions";
+
 
 function App() {
   const [coin, setCoin] = React.useState<CoinList>({ coins: [], timestamp: 0 });
@@ -74,7 +76,7 @@ function App() {
                   path="/history"
                   element={
                     <PageWrapper>
-                      <History />
+                      <RecentTransactions />
                     </PageWrapper>
                   }
                 />

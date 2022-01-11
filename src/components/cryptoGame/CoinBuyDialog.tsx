@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import Button from "@mui/material/Button";
+import { Button } from "@material-ui/core";
 import * as React from "react";
 import { Coin, emptyUser, setUserHelper } from "../../model";
 import { postTransaction } from "../../request/gameService";
@@ -44,20 +44,24 @@ export default function CoinBuyDialog(props: Props) {
   };
   const handleBuy = () => {
     console.log(currentCoin);
-    postTransaction(
-      {
-        name: coin._id,
-        amount: USD / coin.market_data.current_price,
-        activity: "buy",
-        price: coin.market_data.current_price,
-        date: Date.now(),
-      },
-      userContext._id
-    ).then((user) => {
-      if (user !== null) {
-        setUserContext(setUserHelper(user));
-      }
-    });
+    const isDollar = coin._id === "usd";
+
+    if (!isDollar) {
+      postTransaction(
+        {
+          name: coin._id,
+          amount: USD / coin.market_data.current_price,
+          activity: "buy",
+          price: coin.market_data.current_price,
+          date: Date.now(),
+        },
+        userContext._id
+      ).then((user) => {
+        if (user !== null) {
+          setUserContext(setUserHelper(user));
+        }
+      });
+    }
     handleClose();
   };
 
@@ -164,7 +168,7 @@ export default function CoinBuyDialog(props: Props) {
           variant="contained"
           style={{
             padding: 10,
-            background: "#005249",
+            background: "#1cb101",
             color: "#fff",
           }}
         >

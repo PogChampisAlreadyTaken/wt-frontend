@@ -10,7 +10,6 @@ import { Coin, Portfolio } from "../../model";
 import { CoinContext } from "../../context/coinContext";
 import CoinSellDialog from "../cryptoGame/CoinSellDialog";
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -18,7 +17,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+
 import CoinBuyDialog from "../cryptoGame/CoinBuyDialog";
+import { Button } from "@material-ui/core";
 export default function PortfolioCard() {
   const classes = useStyles();
 
@@ -182,6 +183,7 @@ export default function PortfolioCard() {
                       }}
                     >
                       <Button
+                        style={{ background: "#1cb101", color: "#fff" }}
                         onClick={() => {
                           setOpenBuyDialog(!openBuyDialog);
                           setCoinForBuy(coin);
@@ -195,6 +197,7 @@ export default function PortfolioCard() {
                         coin={coinForBuy}
                       />
                       <Button
+                        style={{ background: "#b10101", color: "#fff" }}
                         onClick={() => {
                           setOpenSellDialog(!openSellDialog);
                           setCoinForSell(coin);
