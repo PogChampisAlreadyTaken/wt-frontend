@@ -53,6 +53,16 @@ export default function RecentTransactions() {
                     textAlign: "center",
                   }}
                 >
+                  Buy | Sell
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
                   Recent Value
                 </TableCell>
                 <TableCell
@@ -78,7 +88,7 @@ export default function RecentTransactions() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {userContext?.gameStats?.recentTransactions.map(
+              {userContext?.gameStats?.recentTransactions.slice(0).reverse().map(
                 (transaction, index) => {
                   const coin = coinContext.coins.find(
                     (coin) => coin.name === transaction.name
@@ -103,6 +113,16 @@ export default function RecentTransactions() {
                           {" "}
                           {transaction.name}
                         </span>
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                          textAlign: "center",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {transaction.activity}
                       </TableCell>
                       <TableCell
                         style={{

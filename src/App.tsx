@@ -11,12 +11,12 @@ import {
   CryptoGame,
   GameRanking,
 } from "./pages";
-import { checkData, CoinList, emptyUser, User } from "./model";
+import { checkData, CoinList, emptyUser, setUserHelper, User } from "./model";
 import { CoinContext } from "./context/coinContext";
 import { getAllCoins } from "./request/coinService";
 import { UserContext } from "./context/userContext";
 import { AllUserContext } from "./context/allUserContext";
-import { getUsers } from "./request/userService";
+import { getUser, getUsers } from "./request/userService";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import RecentTransactions from "./components/cards/RecentTransactions";
 
@@ -33,6 +33,11 @@ function App() {
       getAllCoins().then((coins) => setCoins(coins));
     }
     getUsers().then(setAllUsers);
+    getUsers().then(setAllUsers);
+    if (user!== null) {
+      getUser(user._id).then((u) => setUser(setUserHelper(u)));
+    }
+
   }, []);
 
 

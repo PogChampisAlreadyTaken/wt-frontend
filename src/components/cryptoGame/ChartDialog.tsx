@@ -13,7 +13,7 @@ export const options = {
     0: { curveType: "function", color: "#00281b" },
   },
   hAxis: {
-    format: "M/d/yy",
+    format: "d/M/yy",
   },
   vAxis: {
     format: "currency",
