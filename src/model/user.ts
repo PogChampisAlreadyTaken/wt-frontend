@@ -14,7 +14,7 @@ export interface GameStats {
   dailyProfit: number;
   totalProfit: number;
   roundProfit: number;
-  history: [[Number, Number]];
+  history: [[number, number]];
   recentTransactions: Transaction[];
 }
 export interface Transaction {
