@@ -19,6 +19,7 @@ import { AllUserContext } from "./context/allUserContext";
 import { getUsers } from "./request/userService";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import RecentTransactions from "./components/cards/RecentTransactions";
+import PageWrapperLogIn from "./components/PageWrapperLogIn";
 
 function App() {
   const [coins, setCoins] = React.useState<CoinList>({
@@ -43,7 +44,7 @@ function App() {
           row2.gameStats.totalProfit - row.gameStats.totalProfit
       );
       if (user) {
-        user.rank = sortedUsers.findIndex(user => user.email === user.email);
+        user.rank = sortedUsers.findIndex(u => u.email === user.email);
       }
     }
   }, [allUsers, user]);
@@ -92,7 +93,7 @@ function App() {
                   path="/history"
                   element={
                     <PageWrapper>
-                      <RecentTransactions />
+                      <History />
                     </PageWrapper>
                   }
                 />

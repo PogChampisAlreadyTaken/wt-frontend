@@ -12,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 import { AllUserContext } from "../../context/allUserContext";
 import { Avatar } from "@material-ui/core";
+import challenger from "../image/challenger.png";
+import grandMaster from "../image/grandMaster.png";
+import master from "../image/master.png";
+import unranked from "../image/unranked.png";
 
 export function PlayerRanking() {
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
@@ -29,6 +33,12 @@ export function PlayerRanking() {
                 align="center"
               >
                 Position
+              </TableCell>
+              <TableCell
+                style={{ fontWeight: "bolder", color: "#fff" }}
+                align="center"
+              >
+                Elo
               </TableCell>
               <TableCell
                 style={{ fontWeight: "bolder", color: "#fff" }}
@@ -59,7 +69,13 @@ export function PlayerRanking() {
               .map((row, index) => (
                 <TableRow key={row.name}>
                   <TableCell align="center" style={{ fontWeight: "bolder" }}>
-                    {index + 1} 
+                    {index + 1}
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: "bolder" }}>
+                    <Avatar
+                      src={ranks[index] || unranked}
+                      style={{ width: "35px", height: "35px", margin: "auto" }}
+                    ></Avatar>
                   </TableCell>
                   <TableCell align="center">
                     <Avatar
@@ -79,6 +95,8 @@ export function PlayerRanking() {
     </div>
   );
 }
+
+const ranks = [`${challenger}`, `${grandMaster}`, `${master}`, `${unranked}`];
 
 const useStyles = makeStyles({
   card: {
