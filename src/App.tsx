@@ -40,7 +40,19 @@ function App() {
 
   }, []);
 
-  React.useEffect(() => {}, []);
+
+  React.useEffect(() => {
+    if (allUsers) {
+      const sortedUsers = allUsers.sort(
+        (row, row2) =>
+          row2.gameStats.totalProfit - row.gameStats.totalProfit
+      );
+      if (user) {
+        user.rank = sortedUsers.findIndex(u => u.email === user.email);
+      }
+    }
+  }, [allUsers, user]);
+
 
   return (
     <div className="App">

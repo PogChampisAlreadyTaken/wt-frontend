@@ -1,10 +1,7 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import SendIcon from "@mui/icons-material/Send";
 import animationData from "../components/animations/login.json";
 import { firebaseGoogleLogin } from "../firebase/firebase";
 import Lottie from "react-lottie-player";
@@ -13,6 +10,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import { setUserHelper } from "../model";
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 
 export function Login() {
   const [userContext, setUserContext] = React.useContext(UserContext);
@@ -34,7 +32,7 @@ export function Login() {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: "20px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -48,50 +46,13 @@ export function Login() {
         />
 
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            className={classes.overrides}
-            margin="normal"
-            required
-            fullWidth={true}
-            id="email"
-            label="Email Address"
-            name="email"
-            autoFocus
-            autoComplete="new-password"
-          />
-          <TextField
-            className={classes.overrides}
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="new-password"
-          />
           <Button
             style={{
               backgroundColor: "#24695c",
               color: "#fff",
-              marginTop: 3,
-              height: 35,
-            }}
-            variant="contained"
-            fullWidth
-            color="primary"
-            onClick={() => {
-              console.log("Not Implemented yet");
-            }}
-          >
-            Sign In
-          </Button>
-          <Button
-            style={{
-              backgroundColor: "#24695c",
-              color: "#fff",
-              marginTop: 3,
-              height: 35,
+              marginTop: 10,
+              margin: "auto",
+              height: 45,
             }}
             variant="contained"
             fullWidth
