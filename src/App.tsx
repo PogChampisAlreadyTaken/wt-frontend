@@ -19,7 +19,6 @@ import { AllUserContext } from "./context/allUserContext";
 import { getUsers } from "./request/userService";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import RecentTransactions from "./components/cards/RecentTransactions";
-import PageWrapperLogIn from "./components/PageWrapperLogIn";
 
 function App() {
   const [coins, setCoins] = React.useState<CoinList>({
