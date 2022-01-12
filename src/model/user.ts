@@ -5,8 +5,8 @@ export interface User {
   friends?: (User | String)[];
   photoUrl?: String;
   gameStats: GameStats;
+  rank: number;
 }
-
 export interface GameStats {
   portfolio: Map<string, Portfolio>;
   portfolioValueYesterday: number;
@@ -35,6 +35,7 @@ export function emptyUser(): User {
     _id: "",
     name: "",
     email: "",
+    rank: 0,
     gameStats: {
       portfolio: new Map(),
       dailyProfit: 0,

@@ -29,14 +29,25 @@ function App() {
   const [allUsers, setAllUsers] = useLocalStorage<User[]>("users", []);
 
   React.useEffect(() => {
-    console.log(checkData(coins));
     if (checkData(coins)) {
       getAllCoins().then((coins) => setCoins(coins));
     }
     getUsers().then(setAllUsers);
   }, []);
 
-  React.useEffect(() => {}, []);
+
+  React.useEffect(() => {
+    if (allUsers) {
+      const sortedUsers = allUsers.sort(
+        (row, row2) =>
+          row2.gameStats.totalProfit - row.gameStats.totalProfit
+      );
+      if (user) {
+        user.rank = sortedUsers.findIndex(user => user.email === user.email);
+      }
+    }
+  }, [allUsers, user]);
+
 
   return (
     <div className="App">

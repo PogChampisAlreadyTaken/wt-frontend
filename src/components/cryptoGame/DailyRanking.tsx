@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 
 import { AllUserContext } from "../../context/allUserContext";
+import { Avatar } from "@material-ui/core";
 
 export function DailyRanking() {
   const [allUsers, setAllUsers] = React.useContext(AllUserContext);
@@ -23,8 +24,20 @@ export function DailyRanking() {
         <Table>
           <TableHead style={{ background: "#005249" }}>
             <TableRow>
+              <TableCell
+                style={{ fontWeight: "bolder", color: "#fff" }}
+                align="center"
+              >
+                Position
+              </TableCell>
               <TableCell style={{ fontWeight: "bolder", color: "#fff" }}>
                 Player
+              </TableCell>
+              <TableCell
+                style={{ fontWeight: "bolder", color: "#fff" }}
+                align="left"
+              >
+                Name
               </TableCell>
               <TableCell
                 style={{ fontWeight: "bolder", color: "#fff" }}
@@ -35,14 +48,30 @@ export function DailyRanking() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allUsers?.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.gameStats.dailyProfit}</TableCell>
-              </TableRow>
-            ))}
+            {allUsers
+              ?.sort(
+                (row, row2) =>
+                  row2.gameStats.dailyProfit - row.gameStats.dailyProfit
+              )
+              .map((row, index) => (
+                <TableRow key={row.name}>
+                  <TableCell align="center" style={{ fontWeight: "bolder" }}>
+                    {index + 1}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Avatar
+                      src={String(row.photoUrl)}
+                      style={{ width: "35px", height: "35px", margin: "auto" }}
+                    ></Avatar>
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">
+                    $ {row.gameStats.dailyProfit.toFixed(2)}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </Card>

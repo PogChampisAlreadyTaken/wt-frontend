@@ -73,7 +73,6 @@ export default function FriendCard() {
                 sx={{
                   width: "100%",
                   maxWidth: 360,
-                  bgcolor: "background.paper",
                 }}
               >
                 {allUsers?.map((user: User, index) => {
