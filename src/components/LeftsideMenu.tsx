@@ -18,7 +18,9 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Button } from "@mui/material";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { User } from "../model";
-import { idText } from "typescript";
+import PeopleIcon from '@mui/icons-material/People';
+
+
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
@@ -52,6 +54,11 @@ export default function LeftsideMenu() {
       text: "Ranking",
       icon: <EmojiEventsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/ranking"),
+    },
+    {
+      text: "Frinds Porfolio",
+      icon: <PeopleIcon style={{ fill: "#24695c" }} />,
+      onClick: () => navigate("/frinds-porfolio"),
     },
   ];
   return (

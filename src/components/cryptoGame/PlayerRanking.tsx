@@ -72,16 +72,16 @@ export function PlayerRanking() {
                     {index + 1}
                   </TableCell>
                   <TableCell align="center" style={{ fontWeight: "bolder" }}>
-                    <Avatar
+                    <img
                       src={ranks[index] || unranked}
                       style={{ width: "35px", height: "35px", margin: "auto" }}
-                    ></Avatar>
+                    ></img>
                   </TableCell>
                   <TableCell align="center">
-                    <Avatar
+                    <img
                       src={String(row.photoUrl)}
-                      style={{ width: "35px", height: "35px", margin: "auto" }}
-                    ></Avatar>
+                      style={{ width: "45px", height: "45px", margin: "auto", borderRadius: "50%" }}
+                    ></img>
                   </TableCell>
                   <TableCell align="left">{row.name}</TableCell>
                   <TableCell align="center">

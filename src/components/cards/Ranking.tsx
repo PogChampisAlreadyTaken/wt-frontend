@@ -6,19 +6,29 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import { UserContext } from "../../context/userContext";
-import { Avatar } from "@material-ui/core";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { User } from "../../model";
 import challenger from "../image/challenger.png";
 import grandMaster from "../image/grandMaster.png";
 import master from "../image/master.png";
 import unranked from "../image/unranked.png";
-import animationData from "../animations/Confetti.json";
-import Lottie from "react-lottie-player";
+import { AllUserContext } from "../../context/allUserContext";
 
 export default function Ranking() {
   const [userContext, setUserContext] = React.useContext(UserContext);
+  const [allUsers, setAllUsers] = React.useContext(AllUserContext);
+  const [userRank, setUserRank] = React.useState(4);
   const classes = useStyles();
+
+  React.useEffect(() => {
+    if (allUsers) {
+      const sortedUsers = allUsers.sort(
+        (row, row2) =>
+          row2.gameStats.totalProfit - row.gameStats.totalProfit
+      );
+      if (userContext) {
+        setUserRank(sortedUsers.findIndex(u => u.email === userContext.email));
+      }
+    }
+  }, [allUsers, userContext]);
 
   if (userContext === null) {
     return null;
@@ -30,27 +40,12 @@ export default function Ranking() {
         <Typography variant="h5" component="h2">
           <LeaderboardIcon style={{ marginBottom: "-4px" }} /> Rank
         </Typography>
-        <span>
-          <Avatar
-            src={ranks[userContext.rank]}
-            style={{ width: "230px", height: "150px", marginLeft: "150px" }}
-          ></Avatar>
-        </span>
-        <span>
-          <Lottie
-            loop
-            animationData={animationData}
-            play
-            style={{
-              width: "230px",
-              height: "150px",
-              justifyContent: "center",
-              flexDirection: "row-reverse",
-              marginTop: "-150px",
-              marginLeft: "150px",
-            }}
-          />
-        </span>
+
+        <img
+          style={{ marginBottom: "-30%", width: "45%", marginTop: "-6%" }}
+          src={ranks[userRank] || unranked}
+          alt=""
+        />
       </CardContent>
       <CardActions></CardActions>
     </Card>

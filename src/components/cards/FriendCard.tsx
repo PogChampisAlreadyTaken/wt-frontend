@@ -25,6 +25,7 @@ import { setUserHelper, User } from "../../model";
 import { updateUser } from "../../request/userService";
 import { AllUserContext } from "../../context/allUserContext";
 import { Button } from "@material-ui/core";
+import PeopleIcon from '@mui/icons-material/People';
 
 export default function FriendCard() {
   const classes = useStyles();
@@ -55,7 +56,7 @@ export default function FriendCard() {
     <Card className={classes.friendCard}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          <PersonIcon style={{ marginBottom: "-4px" }} /> Friends
+          <PeopleIcon style={{ marginBottom: "-4px" }} /> Friends
           <Button
             variant="outlined"
             onClick={handleClickOpen}
