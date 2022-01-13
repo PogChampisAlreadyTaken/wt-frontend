@@ -176,5 +176,10 @@ const useStyles = makeStyles({
     background: "#24695c",
     boxShadow: "0 0 1px 0px rgb(0 0 0)",
     color: "white",
+    "-ms-overflow-style": "none",
+    "scrollbar-width": "none",
+    "-webkit-scrollbar": {
+      display: "none",
+    },
   },
 });
