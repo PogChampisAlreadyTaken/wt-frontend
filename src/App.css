@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;  /* Firefox */
+  overflow: scroll;
+}
+
+.App::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 
 .App-logo {
@@ -35,4 +42,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+  display: none;  /* hide scrollbar until needed */
 }

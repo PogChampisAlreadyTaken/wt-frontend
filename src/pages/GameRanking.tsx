@@ -7,10 +7,14 @@ import {
 } from "../components/cryptoGame";
 import Lottie from "react-lottie-player";
 import animationData from "../components/animations/trCup.json";
+import { makeStyles } from "@material-ui/core/styles";
+import { NoEncryptionTwoTone } from "@mui/icons-material";
 
 export function GameRanking() {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.scroll}>
       <div
         style={{
           display: "flex",
@@ -41,3 +45,15 @@ export function GameRanking() {
     </div>
   );
 }
+
+const useStyles = makeStyles({
+  scroll: {
+    overflowY: "scroll",
+    height: "92%",
+    "-ms-overflow-style": "none",
+    "scrollbar-width": "none",
+    "-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+});
