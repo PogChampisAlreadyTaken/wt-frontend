@@ -18,7 +18,6 @@ import { UserContext } from "./context/userContext";
 import { AllUserContext } from "./context/allUserContext";
 import { getUser, getUsers } from "./request/userService";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import RecentTransactions from "./components/cards/RecentTransactions";
 
 function App() {
   const [coins, setCoins] = React.useState<CoinList>({
@@ -39,20 +38,6 @@ function App() {
     }
 
   }, []);
-
-
-  React.useEffect(() => {
-    if (allUsers) {
-      const sortedUsers = allUsers.sort(
-        (row, row2) =>
-          row2.gameStats.totalProfit - row.gameStats.totalProfit
-      );
-      if (user) {
-        user.rank = sortedUsers.findIndex(u => u.email === user.email);
-      }
-    }
-  }, [allUsers, user]);
-
 
   return (
     <div className="App">
