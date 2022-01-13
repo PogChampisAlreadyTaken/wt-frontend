@@ -52,9 +52,9 @@ export function Explore() {
   }, []);
 
   return (
-    <div className={classes.exploreTable} style={{ width: "100%", padding: "10px" }}>
+    <div className={classes.exploreTable} style={{ width: "100%", padding: "5px" }}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table style={{ minWidth: "650px" }} aria-label="simple table">
           <TableHead style={{ background: "#24695c" }}>
             <TableRow>
               <TableCell style={{ color: "#fff", fontWeight: "bold" }}>
