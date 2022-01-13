@@ -55,11 +55,6 @@ export default function LeftsideMenu() {
       icon: <EmojiEventsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/ranking"),
     },
-    {
-      text: "Frinds Porfolio",
-      icon: <PeopleIcon style={{ fill: "#24695c" }} />,
-      onClick: () => navigate("/frinds-porfolio"),
-    },
   ];
   return (
     <Box sx={{ display: "flex" }}>
