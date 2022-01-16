@@ -15,8 +15,8 @@
 </div>
 
 <h1 align="center">
-  <a href=""><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/react-build.yml/badge.svg" alt="fred" width="100"></a>
-   <a href=""><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/firebase-hosting-pull-request.yml/badge.svg" alt="firebase" width="268"></a>
+  <a href="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/react-build.yml"><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/react-build.yml/badge.svg" alt="fred" width="100"></a>
+   <a href="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/firebase-hosting-pull-request.yml"><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/firebase-hosting-pull-request.yml/badge.svg" alt="firebase" width="268"></a>
 </h1>
 
 
