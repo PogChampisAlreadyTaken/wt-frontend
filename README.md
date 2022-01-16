@@ -14,6 +14,12 @@
   </p>
 </div>
 
+<h1 align="center">
+  <a href=""><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/react-build.yml/badge.svg" alt="fred" width="100"></a>
+   <a href=""><img src="https://github.com/PogChampisAlreadyTaken/wt-frontend/actions/workflows/firebase-hosting-pull-request.yml/badge.svg" alt="firebase" width="268"></a>
+</h1>
+
+
 ## About The Project
 
 <p align="center">
@@ -32,10 +38,13 @@
 * [Node.js express](https://expressjs.com/)
 * [Mongodb](https://www.mongodb.com/)
 
+* [Backend - Repo](https://github.com/PogChampisAlreadyTaken/wt-backend)
+
 ### Deployment 
 
 * [Okteto](https://okteto.com/)
 * [Firebase](https://firebase.google.com/)
+
 ## Available Scripts
 
 In the project directory, you can run:
