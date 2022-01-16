@@ -17,19 +17,23 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Button } from "@mui/material";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { User } from "../model";
+import { Portfolio, User } from "../model";
 import LoginIcon from "@mui/icons-material/Login";
 
 import { UserContext } from "../context/userContext";
+import { CoinContext } from "../context/coinContext";
 
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
   const [user, setUser] = useLocalStorage<User | null>("user", null);
   const [allUsers, setAllUsers] = useLocalStorage<User[] | null>("users", []);
-  const [userContext, setUserContext] = React.useContext(UserContext as any);
+  const [userContext, setUserContext] = React.useContext(UserContext);
+  const [coinContext, setCoinContext] = React.useContext(CoinContext);
 
   const navigate = useNavigate();
+
+  let portFolioValue = 0;
 
   const itemsList = [
     {
@@ -63,6 +67,19 @@ export default function LeftsideMenu() {
       isPrivate: false,
     },
   ];
+
+  const getRecords = (): Portfolio[] => {
+    const portfolio = userContext?.gameStats.portfolio;
+    const coinArray = Array.from(portfolio?.values() ?? []);
+    return coinArray;
+  };
+
+  getRecords().map((portfolio, index) => {
+    const coin = coinContext.coins.find((coin) => coin._id === portfolio.name);
+    const price = coin?.market_data?.current_price ?? 0;
+    portFolioValue += price * portfolio.amount;
+  });
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -111,10 +128,20 @@ export default function LeftsideMenu() {
                   style={{
                     width: "35px",
                     height: "35px",
-                    marginLeft: "10px",
+                    marginLeft: "5px",
+                    marginRight: "10px",
                     borderRadius: "50%",
                   }}
                 />
+                <Typography
+                  style={{
+                    margin: "auto",
+                    fontWeight: "bolder",
+                    color: "blue",
+                  }}
+                >
+                  {"Current balance: "}${portFolioValue.toFixed(2)}
+                </Typography>
                 <Button
                   variant="outlined"
                   style={{
@@ -133,9 +160,7 @@ export default function LeftsideMenu() {
                   Sign Out
                 </Button>
               </>
-            ) : (
-              null
-            )}
+            ) : null}
           </div>
         </Toolbar>
       </AppBar>
