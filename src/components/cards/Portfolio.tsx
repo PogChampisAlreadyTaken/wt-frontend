@@ -163,7 +163,7 @@ export default function PortfolioCard() {
                       }}
                     >
                       {coin?.market_data?.current_price != undefined
-                        ? coin?.market_data?.current_price * portfolio.amount
+                        ? (coin?.market_data?.current_price * portfolio.amount).toFixed(2)
                         : 0}
                     </TableCell>
                     <TableCell
