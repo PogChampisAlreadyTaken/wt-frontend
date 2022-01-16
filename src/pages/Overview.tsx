@@ -15,12 +15,13 @@ type Props = {};
 export function Overview(props: Props) {
   const [userContext, setUserContext] = React.useContext(UserContext);
   const nav = useNavigate();
+  const classes = useStyles();
 
   if (userContext === null) {
     nav("/");
+    return null;
   }
 
-  const classes = useStyles();
   return (
     <Box className={classes.root}>
       <div className={classes.rootGrid}>

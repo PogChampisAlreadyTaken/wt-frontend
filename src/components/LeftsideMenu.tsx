@@ -18,42 +18,49 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Button } from "@mui/material";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { User } from "../model";
-import PeopleIcon from '@mui/icons-material/People';
+import LoginIcon from "@mui/icons-material/Login";
 
+import { UserContext } from "../context/userContext";
 
 const drawerWidth = 240;
 
 export default function LeftsideMenu() {
   const [user, setUser] = useLocalStorage<User | null>("user", null);
   const [allUsers, setAllUsers] = useLocalStorage<User[] | null>("users", []);
+  const [userContext, setUserContext] = React.useContext(UserContext as any);
 
   const navigate = useNavigate();
-  let isLogedIn = true;
+
   const itemsList = [
     {
       text: "Overview",
       icon: <MenuIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/overview"),
+      isPrivate: true,
     },
     {
       text: "History",
       icon: <HistoryIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/history"),
+      isPrivate: true,
     },
     {
       text: "Explore",
       icon: <ExploreIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/explore"),
+      isPrivate: false,
     },
     {
       text: "CryptoGame",
       icon: <SportsEsportsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/game"),
+      isPrivate: true,
     },
     {
       text: "Ranking",
       icon: <EmojiEventsIcon style={{ fill: "#24695c" }} />,
       onClick: () => navigate("/ranking"),
+      isPrivate: false,
     },
   ];
   return (
@@ -93,25 +100,42 @@ export default function LeftsideMenu() {
               Crypto Trading Game
             </Typography>
           </div>
-          <div>
-            <Button
-              variant="outlined"
-              style={{
-                background: "#005249",
-                color: "#fff",
-                marginLeft: 10,
-                alignSelf: "right",
-                
-              }}
-              onClick={() => {
-                setUser(null);
-                setAllUsers(null);
-
-                navigate("/");
-              }}
-            >
-              Sign Out
-            </Button>
+          <div style={{ display: "flex" }}>
+            {userContext !== null ? (
+              <>
+                <Typography style={{ margin: "auto", fontWeight: "bolder" }}>
+                  {userContext.name}
+                </Typography>
+                <img
+                  src={String(userContext.photoUrl)}
+                  style={{
+                    width: "35px",
+                    height: "35px",
+                    marginLeft: "10px",
+                    borderRadius: "50%",
+                  }}
+                />
+                <Button
+                  variant="outlined"
+                  style={{
+                    background: "#005249",
+                    color: "#fff",
+                    marginLeft: 10,
+                    alignSelf: "right",
+                  }}
+                  onClick={() => {
+                    setUser(null);
+                    setAllUsers(null);
+                    setUserContext(null);
+                    navigate("/");
+                  }}
+                >
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              null
+            )}
           </div>
         </Toolbar>
       </AppBar>
@@ -135,30 +159,30 @@ export default function LeftsideMenu() {
         <Toolbar />
         <Divider />
         <List>
-          {isLogedIn ? (
-            itemsList.map((item, index) => {
-              const { text, icon, onClick } = item;
-              return (
-                isLogedIn && (
-                  <ListItem button key={text} onClick={onClick}>
-                    {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                    <ListItemText
-                      primary={text}
-                      style={{ color: "#24695c", fontWeight: "bold" }}
-                    />
-                  </ListItem>
-                )
-              );
-            })
-          ) : (
-            <ListItem button key="Login" onClick={() => navigate("/")}>
-              <ListItemIcon>
-                {" "}
-                <MenuIcon style={{ fill: "#24695c" }} />
-              </ListItemIcon>
-              <ListItemText primary="Login" />
+          {userContext == null ? (
+            <ListItem button key={"Log in"} onClick={() => navigate("/")}>
+              <ListItemIcon>{<LoginIcon />}</ListItemIcon>
+              <ListItemText
+                primary={"Log in"}
+                style={{ color: "#24695c", fontWeight: "bold" }}
+              />
             </ListItem>
-          )}
+          ) : null}
+          {itemsList.map((item, index) => {
+            const { text, icon, onClick } = item;
+            if (item.isPrivate && userContext == null) {
+              return null;
+            }
+            return (
+              <ListItem button key={text} onClick={onClick}>
+                {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                <ListItemText
+                  primary={text}
+                  style={{ color: "#24695c", fontWeight: "bold" }}
+                />
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
     </Box>

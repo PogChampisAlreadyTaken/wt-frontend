@@ -63,6 +63,16 @@ export default function RecentTransactions() {
                     textAlign: "center",
                   }}
                 >
+                  Value in $
+                </TableCell>
+                <TableCell
+                  style={{
+                    background: "#fff",
+                    color: "#005249",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
                   Recent Value
                 </TableCell>
                 <TableCell
@@ -73,7 +83,7 @@ export default function RecentTransactions() {
                     textAlign: "center",
                   }}
                 >
-                  Paid
+                  Amount
                 </TableCell>
                 <TableCell
                   style={{
@@ -123,6 +133,15 @@ export default function RecentTransactions() {
                         }}
                       >
                         {transaction.activity}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          background: "#005249",
+                          color: "#fff",
+                          textAlign: "center",
+                        }}
+                      >
+                        {(transaction.amount * transaction.price).toFixed(2)}
                       </TableCell>
                       <TableCell
                         style={{
