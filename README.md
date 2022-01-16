@@ -17,7 +17,7 @@
 ## About The Project
 
 <p align="center">
-  <img src="assets/page.png" />
+  <img src="assets/page.jpeg" />
 </p>
 
 ## Built With
@@ -35,6 +35,7 @@
 ### Deployment 
 
 * [Okteto](https://okteto.com/)
+* [Firebase](https://firebase.google.com/)
 ## Available Scripts
 
 In the project directory, you can run:
