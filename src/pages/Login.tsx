@@ -17,15 +17,10 @@ export function Login() {
   const navigate = useNavigate();
   const classes = useStyles();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  if (userContext !== null) {
+    navigate("/overview");
+    return null;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -45,7 +40,7 @@ export function Login() {
           style={{ width: 450, height: 450 }}
         />
 
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" noValidate sx={{ mt: 1 }}>
           <Button
             style={{
               backgroundColor: "#24695c",
