@@ -53,7 +53,6 @@ export default function CoinBuyDialog(props: Props) {
     onClose(!open);
   };
   const handleBuy = () => {
-    console.log(currentCoin);
     const isDollar = coin._id === "usd";
 
     if (!isDollar) {
