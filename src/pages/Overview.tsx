@@ -31,13 +31,7 @@ export function Overview(props: Props) {
           direction="row"
           className={classes.upperGrid}
         >
-          <Grid
-            item
-            container
-            direction="column"
-            xs={8}
-            spacing={1}
-          >
+          <Grid item container direction="column" xs={8} spacing={1}>
             <Grid
               item
               container
@@ -87,17 +81,20 @@ const useStyles = makeStyles({
   },
   rootGrid: {
     height: "calc(100% - 8px)",
+    display: "flex",
+    flexDirection: "column",
     width: "100%",
     margin: "0px",
     paddingRight: "16px",
     paddingBottom: "8px",
+    marginBottom: "-50px",
   },
   upperGrid: {
-    height: "70%",
+    flexGrow: 7,
     margin: "0px",
   },
   lowerGrid: {
-    height: "30%",
+    flexGrow: 3,
     margin: "0px",
     paddingBottom: "38px",
   },

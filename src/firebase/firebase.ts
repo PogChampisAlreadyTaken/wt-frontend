@@ -7,25 +7,26 @@ import {
   postUser,
 } from "../request/userService";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyB__1ycHIouGRe2-HnJoGWQZDWPYgdtqFY",
+
+  authDomain: "crypto-game-wt.firebaseapp.com",
+
+  projectId: "crypto-game-wt",
+
+  storageBucket: "crypto-game-wt.appspot.com",
+
+  messagingSenderId: "660751342269",
+
+  appId: "1:660751342269:web:0a7375795db270da2d35d4",
+
+  measurementId: "G-Y5P4YEV9H3",
+};
+
+export const firebase = initializeApp(firebaseConfig);
+
 export async function firebaseGoogleLogin() {
   // TODO: Replace the following with your app's Firebase project configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB__1ycHIouGRe2-HnJoGWQZDWPYgdtqFY",
-
-    authDomain: "crypto-game-wt.firebaseapp.com",
-
-    projectId: "crypto-game-wt",
-
-    storageBucket: "crypto-game-wt.appspot.com",
-
-    messagingSenderId: "660751342269",
-
-    appId: "1:660751342269:web:0a7375795db270da2d35d4",
-
-    measurementId: "G-Y5P4YEV9H3",
-  };
-
-  const app = initializeApp(firebaseConfig);
 
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({
