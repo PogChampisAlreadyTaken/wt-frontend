@@ -67,7 +67,7 @@ export function PlayerRanking() {
                   row2.gameStats.totalProfit - row.gameStats.totalProfit
               )
               .map((row, index) => (
-                <TableRow key={row.name}>
+                <TableRow key={row._id + "Player"}>
                   <TableCell align="center" style={{ fontWeight: "bolder" }}>
                     {index + 1}
                   </TableCell>
@@ -80,7 +80,12 @@ export function PlayerRanking() {
                   <TableCell align="center">
                     <img
                       src={String(row.photoUrl)}
-                      style={{ width: "45px", height: "45px", margin: "auto", borderRadius: "50%" }}
+                      style={{
+                        width: "45px",
+                        height: "45px",
+                        margin: "auto",
+                        borderRadius: "50%",
+                      }}
                     ></img>
                   </TableCell>
                   <TableCell align="left">{row.name}</TableCell>
