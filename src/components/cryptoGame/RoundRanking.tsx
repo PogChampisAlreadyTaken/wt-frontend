@@ -55,14 +55,19 @@ export function RoundRanking() {
                   row2.gameStats.roundProfit - row.gameStats.roundProfit
               )
               .map((row, index) => (
-                <TableRow key={row.name}>
+                <TableRow key={row._id + "Round"}>
                   <TableCell align="center" style={{ fontWeight: "bolder" }}>
                     {index + 1}
                   </TableCell>
                   <TableCell align="center">
                     <img
                       src={String(row.photoUrl)}
-                      style={{ width: "45px", height: "45px", margin: "auto", borderRadius: "50%"  }}
+                      style={{
+                        width: "45px",
+                        height: "45px",
+                        margin: "auto",
+                        borderRadius: "50%",
+                      }}
                     ></img>
                   </TableCell>
                   <TableCell component="th" scope="row">

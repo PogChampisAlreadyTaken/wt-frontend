@@ -49,7 +49,7 @@ export function GameRanking() {
 const useStyles = makeStyles({
   scroll: {
     overflowY: "scroll",
-    height: "92%",
+    height: "100%",
     "-ms-overflow-style": "none",
     "scrollbar-width": "none",
     "-webkit-scrollbar": {

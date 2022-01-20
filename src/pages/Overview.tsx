@@ -64,12 +64,7 @@ export function Overview(props: Props) {
               <PortfolioCard />
             </Grid>
           </Grid>
-          <Grid
-            item
-            xs={4}
-            style={{ height: "100%", flexWrap: "nowrap" }}
-            spacing={1}
-          >
+          <Grid item xs={4} style={{ height: "100%", flexWrap: "nowrap" }}>
             <PortfolioSum />
           </Grid>
         </Grid>
