@@ -6,10 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@mui/material/Typography";
 import { Chart } from "react-google-charts";
 import CardMedia from "@mui/material/CardMedia";
-import FunctionsIcon from '@mui/icons-material/Functions';
+import FunctionsIcon from "@mui/icons-material/Functions";
 import { UserContext } from "../../context/userContext";
 import { CoinContext } from "../../context/coinContext";
-
 
 export const options = {
   chartArea: { backgroundColor: "#0000004d" },
@@ -25,13 +24,13 @@ export const options = {
     textStyle: { color: "#fff" },
     format: "currency",
   },
-  series:{
+  series: {
     0: { curveType: "function", color: "#fff" },
   },
 };
 
 const pieOptions = {
-  pieHole: 0.50,
+  pieHole: 0.5,
   backgroundColor: "transparent",
   slices: [
     {
@@ -75,11 +74,8 @@ export default function PortfolioSum() {
     const pieData: any[] = [["Coin", "Amount"]];
     userContext?.gameStats.portfolio.forEach((coin) => {
       const coinTmp = coinContext.coins.find((c) => c._id === coin.name);
-      const price = coinTmp?.market_data.current_price??0; 
-      pieData.push([
-        coin.name,
-        coin.amount * (price)
-      ]);
+      const price = coinTmp?.market_data.current_price ?? 0;
+      pieData.push([coin.name, coin.amount * price]);
     });
     return pieData;
   };
@@ -92,40 +88,35 @@ export default function PortfolioSum() {
     <Card className={classes.portfolioSum}>
       <CardContent>
         <Typography variant="h5" component="h2">
-        <FunctionsIcon style={{ marginBottom: "-4px" }} /> Portfolio Sum
+          <FunctionsIcon style={{ marginBottom: "-4px" }} /> Portfolio Sum
         </Typography>
       </CardContent>
-      <CardMedia>
-      <div style={{ backgroundColor: "#24695c" }}>
+      <CardMedia sx={{ height: "calc(100% - 64px)" }}>
+        <div style={{ backgroundColor: "#24695c" }}>
           <Typography>Week performance</Typography>
-        <Chart
-        style={{ marginLeft: "15px" }}
-          chartType="AreaChart"
-          width="100%"
-          height="100%"
-          data={[
-            ...[["date", "prices"]],
-            ...userContext?.gameStats.history.map((h) => [
-              new Date(h[0]),
-              h[1],
-            ]),
-          ]}
-          options={options}
-        />
-        </div>
-
-        <div>
-          <Typography>Coin share</Typography>
           <Chart
-            style={{ marginTop: "25px" }}
-            chartType="PieChart"
-            data={pieChartData()}
-            options={pieOptions}
-            width={"100%"}
-            height={"290px"}
-            legend_toggle
+            style={{ marginLeft: "15px" }}
+            chartType="AreaChart"
+            width="100%"
+            height="30%"
+            data={[
+              ...[["date", "prices"]],
+              ...userContext?.gameStats.history.map((h) => [
+                new Date(h[0]),
+                h[1],
+              ]),
+            ]}
+            options={options}
           />
         </div>
+        <div style={{ height: 20 }}></div>
+        <Chart
+          chartType="PieChart"
+          data={pieChartData()}
+          options={pieOptions}
+          height={"70%"}
+          legend_toggle
+        />
       </CardMedia>
       <CardActions></CardActions>
     </Card>

@@ -57,14 +57,19 @@ export function DailyRanking() {
                   row2.gameStats.dailyProfit - row.gameStats.dailyProfit
               )
               .map((row, index) => (
-                <TableRow key={row.name}>
+                <TableRow key={row._id + "Daily"}>
                   <TableCell align="center" style={{ fontWeight: "bolder" }}>
                     {index + 1}
                   </TableCell>
                   <TableCell align="center">
                     <img
                       src={String(row.photoUrl)}
-                      style={{ width: "45px", height: "45px", margin: "auto", borderRadius: "50%" }}
+                      style={{
+                        width: "45px",
+                        height: "45px",
+                        margin: "auto",
+                        borderRadius: "50%",
+                      }}
                     ></img>
                   </TableCell>
                   <TableCell component="th" scope="row">
