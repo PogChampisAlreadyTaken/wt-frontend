@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@mui/system";
+import { Box, height } from "@mui/system";
 import CapitalCard from "../components/cards/Capital";
 import FriendCard from "../components/cards/FriendCard";
 import PortfolioSum from "../components/cards/PortfolioSum";
@@ -62,10 +62,14 @@ export function Overview(props: Props) {
           spacing={1}
           className={classes.lowerGrid}
         >
-          <Grid item xs={8} style={{ height: "48%", overflow: "auto" }}>
+          <Grid
+            item
+            xs={8}
+            style={{ height: "100%", overflow: "auto", paddingTop: "24px" }}
+          >
             <RecentTransactions />
           </Grid>
-          <Grid item xs={4} style={{ height: "48%", overflow: "auto" }}>
+          <Grid item xs={4} style={{ height: "100%", paddingTop: "24px" }}>
             <Ranking />
           </Grid>
         </Grid>
@@ -76,26 +80,23 @@ export function Overview(props: Props) {
 
 const useStyles = makeStyles({
   root: {
-    height: "calc(100% - 8px)",
-    paddingBottom: "8px",
+    height: "100%",
   },
   rootGrid: {
-    height: "calc(100% - 8px)",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     width: "100%",
     margin: "0px",
     paddingRight: "16px",
-    paddingBottom: "8px",
-    marginBottom: "-50px",
   },
   upperGrid: {
-    flexGrow: 1,
+    height: "70%",
     margin: "0px",
   },
   lowerGrid: {
-    flexGrow: 3,
+    height: "30%",
     margin: "0px",
-    paddingBottom: "38px",
+    paddingBottom: "8px",
   },
 });
