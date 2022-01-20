@@ -31,7 +31,19 @@ export function Overview(props: Props) {
           direction="row"
           className={classes.upperGrid}
         >
-          <Grid item container direction="column" xs={8} spacing={1}>
+          <Grid
+            item
+            container
+            direction="column"
+            xs={8}
+            spacing={1}
+            style={{
+              height: "100%",
+              flexWrap: "nowrap",
+              marginTop: "0px",
+              paddingTop: "0px",
+            }}
+          >
             <Grid
               item
               container
@@ -52,7 +64,12 @@ export function Overview(props: Props) {
               <PortfolioCard />
             </Grid>
           </Grid>
-          <Grid item xs={4}>
+          <Grid
+            item
+            xs={4}
+            style={{ height: "100%", flexWrap: "nowrap" }}
+            spacing={1}
+          >
             <PortfolioSum />
           </Grid>
         </Grid>
@@ -62,14 +79,10 @@ export function Overview(props: Props) {
           spacing={1}
           className={classes.lowerGrid}
         >
-          <Grid
-            item
-            xs={8}
-            style={{ height: "100%", overflow: "auto", paddingTop: "24px" }}
-          >
+          <Grid item xs={8} style={{ height: "100%", overflow: "auto" }}>
             <RecentTransactions />
           </Grid>
-          <Grid item xs={4} style={{ height: "100%", paddingTop: "24px" }}>
+          <Grid item xs={4} style={{ height: "100%" }}>
             <Ranking />
           </Grid>
         </Grid>
