@@ -1,9 +1,10 @@
 import * as React from "react";
-
 import LeftsideMenu from "./LeftsideMenu";
 interface props {}
 
+
 export default function PageWrapper(props: React.PropsWithChildren<props>) {
+  
   return (
     <div
       style={{
@@ -13,6 +14,7 @@ export default function PageWrapper(props: React.PropsWithChildren<props>) {
         width: "calc(100% - 240px)",
         height: "100%",
         background: "#d7d4d4",
+        overflow: "auto",
       }}
     >
       <LeftsideMenu />

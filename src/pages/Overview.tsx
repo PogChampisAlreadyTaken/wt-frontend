@@ -62,10 +62,10 @@ export function Overview(props: Props) {
           spacing={1}
           className={classes.lowerGrid}
         >
-          <Grid item xs={8} style={{ height: "100%", overflow: "auto" }}>
+          <Grid item xs={8} style={{ height: "48%", overflow: "auto" }}>
             <RecentTransactions />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={4} style={{ height: "48%", overflow: "auto" }}>
             <Ranking />
           </Grid>
         </Grid>
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
     marginBottom: "-50px",
   },
   upperGrid: {
-    flexGrow: 7,
+    flexGrow: 1,
     margin: "0px",
   },
   lowerGrid: {
